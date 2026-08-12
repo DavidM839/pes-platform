@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --pes-navy-900: #040b1d;
+    --pes-navy-600: #173257;
+    --pes-gold-500: #c68605;
+    --pes-gold-400: #e0a402;
+    --pes-mist: #f7f9fc;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-navy-700 antialiased;
+    font-feature-settings: 'cv05' 1;
+  }
+
+  h1, h2, h3, h4 {
+    @apply text-navy-900 font-semibold;
+    letter-spacing: -0.015em;
+  }
+
+  /* Las cifras se alinean en columna: imprescindible en tablas de galones. */
+  table, .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-navy-900 ring-offset-2 ring-offset-white;
+  }
+}
+
+@layer components {
+  /* Panel reglado. Sin sombra: el borde define el limite. */
+  .pes-card {
+    @apply border border-navy-100 bg-white;
+  }
+
+  /* Bloque con regla superior gruesa, para secciones de peso. */
+  .pes-panel {
+    @apply border border-navy-100 border-t-2 border-t-navy-900 bg-white;
+  }
+
+  .pes-label {
+    @apply block font-mono text-[11px] font-medium uppercase tracking-wide2 text-navy-600;
+  }
+
+  .pes-hint {
+    @apply text-xs text-navy-500;
+  }
+
+  /* Rotulo de seccion en versalitas, tomado del tracking del logotipo. */
+  .pes-eyebrow {
+    @apply font-mono text-[10px] font-medium uppercase tracking-eyebrow text-navy-500;
+  }
+
+  .pes-num {
+    @apply font-mono tabular-nums;
+  }
+
+  .pes-container {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .pes-section {
+    @apply py-20 sm:py-24;
+  }
+
+  .pes-mist {
+    @apply bg-mist;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .no-spinner {
+    -moz-appearance: textfield;
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { @apply bg-white; }
+}
