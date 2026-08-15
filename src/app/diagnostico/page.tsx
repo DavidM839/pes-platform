@@ -77,7 +77,7 @@ export default async function DiagnosticoPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-6 py-16">
-      <h1 className="font-display text-2xl font-semibold text-navy-900">Diagnóstico de acceso</h1>
+      <h1 className="font-sans text-2xl font-semibold text-navy-900">Diagnóstico de acceso</h1>
       <p className="mt-2 text-sm text-navy-500">
         Esta página verifica la conexión con Supabase. Bórrala antes de publicar en producción.
       </p>
@@ -93,7 +93,7 @@ export default async function DiagnosticoPage() {
               {r.ok ? '✓' : '!'}
             </span>
             <div>
-              <p className="font-mono text-[12px] font-semibold uppercase tracking-wide2 text-navy-800">{r.label}</p>
+              <p className="font-sans text-[12px] font-semibold uppercase tracking-wide2 text-navy-800">{r.label}</p>
               <p className="mt-1 break-all text-[13px] text-navy-600">{r.detail}</p>
             </div>
           </li>
@@ -103,9 +103,9 @@ export default async function DiagnosticoPage() {
       <div className="mt-8 rounded-lg border border-navy-100 bg-mist px-5 py-4 text-[13px] leading-relaxed text-navy-600">
         <p className="font-semibold text-navy-800">Cómo entrar de forma garantizada:</p>
         <ol className="mt-2 list-decimal space-y-1 pl-5">
-          <li>Crea una cuenta desde <code className="font-mono">/registro</code> — ahora queda confirmada al instante y entra sola al portal.</li>
-          <li>O crea un administrador con el script: <code className="font-mono">node scripts/crear-usuario.mjs correo@pes.com "Clave#9" --admin</code></li>
-          <li>Luego inicia sesión en <code className="font-mono">/iniciar-sesion</code>.</li>
+          <li>Crea una cuenta desde <code className="font-sans">/registro</code> — ahora queda confirmada al instante y entra sola al portal.</li>
+          <li>O crea un administrador con el script: <code className="font-sans">node scripts/crear-usuario.mjs correo@pes.com "Clave#9" --admin</code></li>
+          <li>Luego inicia sesión en <code className="font-sans">/iniciar-sesion</code>.</li>
         </ol>
       </div>
     </div>

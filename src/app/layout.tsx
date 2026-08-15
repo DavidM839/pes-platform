@@ -1,35 +1,18 @@
 import type { Metadata, Viewport } from 'next';
-import { Barlow_Condensed, Manrope, Space_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { siteConfig } from '@/config/site';
 import './globals.css';
 
 /**
- * Sistema tipográfico de PES:
- *  - Barlow Condensed (principal / display): condensada con carácter, para
- *    titulares y cifras grandes. Aporta impacto y presencia de marca.
- *  - Manrope (secundaria / cuerpo): sans redondeada y muy legible para el
- *    cuerpo de texto y la interfaz.
- *  - Space Mono (mono): monoespaciada para etiquetas, folios y detalles técnicos.
+ * Tipografía única y neutra para toda la plataforma.
+ * Inter mantiene la interfaz legible y profesional sin mezclar familias
+ * condensadas o monoespaciadas entre títulos, datos y controles.
  */
-const fontDisplay = Barlow_Condensed({
-  subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const fontSans = Manrope({
+const fontSans = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
-  display: 'swap',
-});
-
-const fontMono = Space_Mono({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -58,13 +41,13 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${fontDisplay.variable} ${fontSans.variable} ${fontMono.variable}`}>
+    <html lang="es" className={fontSans.variable}>
       <body className="min-h-screen font-sans">
         {children}
         <Toaster
           position="top-right"
           richColors
-          toastOptions={{ style: { borderRadius: '2px', fontFamily: 'var(--font-sans)' } }}
+          toastOptions={{ style: { borderRadius: '8px', fontFamily: 'var(--font-sans)' } }}
         />
       </body>
     </html>

@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 
 export function Skeleton({ className }: { className?: string }) {
-  return <div className={cn('animate-pulse bg-navy-100', className)} />;
+  return <div className={cn('skeleton-shimmer bg-navy-100', className)} />;
 }
 
 export function TableSkeleton({ rows = 5 }: { rows?: number }) {

@@ -20,7 +20,7 @@ export default async function LoginPage({
 
       {params.error === 'sin-configurar' && (
         <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          Supabase aún no está configurado. Completa <code className="font-mono">.env.local</code> y
+          Supabase aún no está configurado. Completa <code className="font-sans">.env.local</code> y
           ejecuta los scripts SQL para habilitar el portal y el panel administrativo. Mientras tanto
           puedes recorrer la parte pública del sitio.
         </div>
@@ -57,7 +57,7 @@ export default async function LoginPage({
       </p>
 
       <div className="mt-6 border-t border-navy-100 pt-5 text-center">
-        <p className="font-mono text-[10px] uppercase tracking-eyebrow text-navy-400">
+        <p className="font-sans text-[10px] uppercase tracking-eyebrow text-navy-400">
           Equipo PES
         </p>
         <Link

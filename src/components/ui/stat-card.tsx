@@ -23,13 +23,13 @@ export function MetricRow({ metrics, className }: { metrics: Metric[]; className
             <div className="px-5 py-4">
               <dd
                 className={cn(
-                  'font-mono text-[26px] font-medium leading-none tabular-nums',
+                  'font-sans text-[26px] font-medium leading-none tabular-nums',
                   m.accent ? 'text-gold-700' : 'text-navy-900',
                 )}
               >
                 {m.value}
               </dd>
-              <dt className="mt-2 font-mono text-[10px] font-medium uppercase tracking-eyebrow text-navy-500">
+              <dt className="mt-2 font-sans text-[10px] font-medium uppercase tracking-eyebrow text-navy-500">
                 {m.label}
               </dt>
               {m.hint && <p className="mt-1 text-[11px] text-navy-400">{m.hint}</p>}
@@ -39,7 +39,7 @@ export function MetricRow({ metrics, className }: { metrics: Metric[]; className
           return (
             <div key={m.label} className="border-b border-navy-100 sm:border-b-0">
               {m.href ? (
-                <Link href={m.href} className="block transition-colors hover:bg-mist">
+                <Link href={m.href} className="block transition-[background-color,transform] duration-200 hover:-translate-y-px hover:bg-mist">
                   {body}
                 </Link>
               ) : (
@@ -57,12 +57,12 @@ export function MetricRow({ metrics, className }: { metrics: Metric[]; className
 export function StatCard({ label, value, hint, href, accent }: Metric) {
   const body = (
     <div className="border-t-2 border-navy-900 px-4 py-3.5">
-      <p className={cn('font-mono text-[22px] font-medium leading-none tabular-nums', accent ? 'text-gold-700' : 'text-navy-900')}>
+      <p className={cn('font-sans text-[22px] font-medium leading-none tabular-nums', accent ? 'text-gold-700' : 'text-navy-900')}>
         {value}
       </p>
-      <p className="mt-2 font-mono text-[10px] font-medium uppercase tracking-eyebrow text-navy-500">{label}</p>
+      <p className="mt-2 font-sans text-[10px] font-medium uppercase tracking-eyebrow text-navy-500">{label}</p>
       {hint && <p className="mt-1 text-[11px] text-navy-400">{hint}</p>}
     </div>
   );
-  return href ? <Link href={href} className="block hover:bg-mist">{body}</Link> : body;
+  return href ? <Link href={href} className="block transition-[background-color,transform] duration-200 hover:-translate-y-px hover:bg-mist">{body}</Link> : body;
 }

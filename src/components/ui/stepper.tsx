@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 
-/** Progreso del formulario: numeros en monoespaciada sobre una regla continua. */
+/** Progreso del formulario: numeros tabulares sobre una regla continua. */
 export function Stepper({
   steps,
   current,
@@ -25,14 +25,14 @@ export function Stepper({
                 disabled={!clickable}
                 onClick={clickable ? () => onStepClick?.(i) : undefined}
                 className={cn(
-                  'w-full border-t-2 px-1 pt-3 text-left transition-colors -mt-[2px]',
+                  'w-full border-t-2 px-1 pt-3 text-left transition-[border-color,color,transform] duration-200 -mt-[2px] enabled:hover:-translate-y-px',
                   active ? 'border-t-navy-900' : done ? 'border-t-gold-400' : 'border-t-transparent',
                   clickable && 'cursor-pointer',
                 )}
               >
                 <span
                   className={cn(
-                    'block font-mono text-[11px] tabular-nums',
+                    'block font-sans text-[11px] tabular-nums',
                     active ? 'text-navy-900' : done ? 'text-gold-700' : 'text-navy-300',
                   )}
                 >
@@ -51,7 +51,7 @@ export function Stepper({
           );
         })}
       </ol>
-      <p className="mt-3 font-mono text-[11px] uppercase tracking-wide2 text-navy-600 sm:hidden">
+      <p className="mt-3 font-sans text-[11px] uppercase tracking-wide2 text-navy-600 sm:hidden">
         Paso {current + 1} de {steps.length} — {steps[current]}
       </p>
     </nav>

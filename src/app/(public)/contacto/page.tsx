@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ButtonLink } from '@/components/ui/button';
+import { Reveal } from '@/components/ui/reveal';
 import { WhatsAppButton } from '@/components/whatsapp/whatsapp-button';
 import { siteConfig } from '@/config/site';
 import { formatPhone } from '@/lib/format';
@@ -24,7 +25,7 @@ export default async function ContactoPage() {
         La vía más rápida es WhatsApp. También puedes escribirnos por correo.
       </p>
 
-      <div className="mt-14 grid gap-12 lg:grid-cols-12">
+      <Reveal className="mt-14 grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <dl className="divide-y divide-navy-100 border-t-2 border-navy-900">
             {[
@@ -33,11 +34,11 @@ export default async function ContactoPage() {
               ['Ubicación', address, null, false],
               ['Horario', 'Lunes a viernes · 8:00 a. m. – 5:00 p. m.', null, false],
             ].map(([label, value, href, mono]) => (
-              <div key={label as string} className="grid gap-1 py-5 sm:grid-cols-3 sm:gap-6">
-                <dt className="font-mono text-[10px] uppercase tracking-eyebrow text-navy-500">{label}</dt>
-                <dd className={`text-[15px] text-navy-900 sm:col-span-2 ${mono ? 'font-mono tabular-nums' : ''}`}>
+              <div key={label as string} className="grid gap-1 py-5 transition-[transform,background-color] duration-200 hover:translate-x-1 hover:bg-mist/60 sm:grid-cols-3 sm:gap-6">
+                <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-navy-500">{label}</dt>
+                <dd className={`text-[15px] text-navy-900 sm:col-span-2 ${mono ? 'font-sans tabular-nums' : ''}`}>
                   {href ? (
-                    <a href={href as string} className="hover:text-gold-700">{value}</a>
+                    <a href={href as string} className="transition-colors hover:text-gold-700">{value}</a>
                   ) : (
                     value
                   )}
@@ -61,7 +62,7 @@ export default async function ContactoPage() {
             </div>
           </div>
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 }

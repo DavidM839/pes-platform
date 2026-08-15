@@ -101,8 +101,8 @@ export function FileUpload({
           handleFiles(e.dataTransfer.files);
         }}
         disabled={pending || files.length >= MAX_UPLOAD_FILES}
-        className={`flex w-full flex-col items-center gap-2 rounded-lg border-2 border-dashed px-4 py-7 transition-colors ${
-          dragOver ? 'border-gold-400 bg-gold-50' : 'border-navy-200 bg-mist hover:border-navy-400'
+        className={`flex w-full flex-col items-center gap-2 rounded-lg border-2 border-dashed px-4 py-7 transition-[border-color,background-color,transform,box-shadow] duration-200 ${
+          dragOver ? 'scale-[1.01] border-gold-400 bg-gold-50 shadow-sm' : 'border-navy-200 bg-mist hover:-translate-y-px hover:border-navy-400 hover:shadow-sm'
         } disabled:cursor-not-allowed disabled:opacity-60`}
       >
         {pending ? (
@@ -132,7 +132,7 @@ export function FileUpload({
           {files.map((f) => (
             <li
               key={f.path}
-              className="group relative aspect-video overflow-hidden rounded-lg border border-navy-100 bg-mist"
+              className="group relative aspect-video overflow-hidden rounded-lg border border-navy-100 bg-mist transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-px hover:border-navy-200 hover:shadow-sm"
             >
               {f.previewUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element

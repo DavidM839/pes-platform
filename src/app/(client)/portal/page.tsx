@@ -55,8 +55,8 @@ export default async function ClientDashboard() {
         <div className="pointer-events-none absolute bottom-0 right-24 h-32 w-32 rounded-full bg-sky-400/10 blur-2xl" aria-hidden />
         <div className="relative flex flex-wrap items-end justify-between gap-5">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-eyebrow text-gold-400">Portal del cliente</p>
-            <h1 className="mt-2 font-display text-[26px] font-semibold leading-tight tracking-tight text-white sm:text-[30px]">
+            <p className="font-sans text-[10px] uppercase tracking-eyebrow text-gold-400">Portal del cliente</p>
+            <h1 className="mt-2 font-sans text-[26px] font-semibold leading-tight tracking-tight text-white sm:text-[30px]">
               Hola, {profile?.full_name?.split(' ')[0] ?? 'bienvenido'}
             </h1>
             <p className="mt-1.5 max-w-md text-[13px] leading-relaxed text-navy-200">
@@ -64,7 +64,7 @@ export default async function ClientDashboard() {
             </p>
             <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
               {['Rápido', 'Confiable', 'Seguro'].map((t) => (
-                <li key={t} className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wide2 text-navy-100">
+                <li key={t} className="flex items-center gap-1.5 font-sans text-[10px] uppercase tracking-wide2 text-navy-100">
                   <span className="h-1.5 w-1.5 rounded-full bg-gold-400" aria-hidden />
                   {t}
                 </li>
@@ -128,7 +128,7 @@ export default async function ClientDashboard() {
                   >
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[13px] font-semibold text-navy-900">{r.request_number}</span>
+                        <span className="font-sans text-[13px] font-semibold text-navy-900">{r.request_number}</span>
                         <span className="text-[13px] text-navy-500">·</span>
                         <span className="truncate text-[13px] text-navy-600">
                           {r.quantity_unknown ? 'Cantidad por definir' : formatGallons(r.quantity_gal)} de {SERVICE_LABELS[r.service_type]}

@@ -48,8 +48,8 @@ export function ServiceDonut({ diesel, agua }: { diesel: number; agua: number })
           </PieChart>
         </ResponsiveContainer>
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-          <span className="font-display text-2xl font-semibold text-navy-900">{total}</span>
-          <span className="font-mono text-[9px] uppercase tracking-eyebrow text-navy-400">Total</span>
+          <span className="font-sans text-2xl font-semibold text-navy-900">{total}</span>
+          <span className="font-sans text-[9px] uppercase tracking-eyebrow text-navy-400">Total</span>
         </div>
       </div>
 
@@ -58,7 +58,7 @@ export function ServiceDonut({ diesel, agua }: { diesel: number; agua: number })
           <li key={d.name} className="flex items-center gap-3">
             <span className="h-3 w-3 rounded-sm" style={{ backgroundColor: d.color }} aria-hidden />
             <span className="text-[13px] font-medium text-navy-700">{d.name}</span>
-            <span className="font-mono text-[13px] font-semibold tabular-nums text-navy-900">
+            <span className="font-sans text-[13px] font-semibold tabular-nums text-navy-900">
               {pct(d.value)}%
             </span>
           </li>

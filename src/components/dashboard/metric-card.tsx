@@ -51,13 +51,13 @@ export function MetricCard({ label, value, sublabel, icon, tone = 'navy', href }
   const Icon = METRIC_ICONS[icon];
 
   const body = (
-    <div className="flex h-full items-start gap-4 rounded-2xl border border-navy-100 bg-white px-5 py-5 transition-all hover:border-navy-200 hover:shadow-sm">
-      <span className={cn('grid h-11 w-11 shrink-0 place-items-center rounded-xl', TONE_STYLES[tone])}>
+    <div className="group flex h-full items-start gap-4 rounded-2xl border border-navy-100 bg-white px-5 py-5 transition-[transform,border-color,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:border-navy-200 hover:shadow-[0_14px_32px_-24px_rgba(4,11,29,0.55)]">
+      <span className={cn('icon-response grid h-11 w-11 shrink-0 place-items-center rounded-xl', TONE_STYLES[tone])}>
         <Icon className="h-5 w-5" aria-hidden />
       </span>
       <div className="min-w-0">
         <p className="text-[13px] font-medium leading-tight text-navy-500">{label}</p>
-        <p className="mt-1 font-display text-[28px] font-semibold leading-none tracking-tight text-navy-900 tabular-nums">
+        <p className="mt-1 font-sans text-[28px] font-semibold leading-none tracking-tight text-navy-900 tabular-nums">
           {value}
         </p>
         {sublabel && <p className="mt-1 text-[11px] text-navy-400">{sublabel}</p>}
@@ -76,7 +76,7 @@ export function MetricCard({ label, value, sublabel, icon, tone = 'navy', href }
 
 export function MetricCardGrid({ metrics, className }: { metrics: IconMetric[]; className?: string }) {
   return (
-    <div className={cn('grid gap-4 sm:grid-cols-2 lg:grid-cols-4', className)}>
+    <div className={cn('motion-stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4', className)}>
       {metrics.map((m) => (
         <MetricCard key={m.label} {...m} />
       ))}

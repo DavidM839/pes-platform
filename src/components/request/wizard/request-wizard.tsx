@@ -161,20 +161,22 @@ export function RequestWizard({
       <Card className="p-6 sm:p-8">
         {serverError && <Notice tone="danger" className="mb-6">{serverError}</Notice>}
 
-        {step === -1 && <GuestGate data={data} update={update} errors={errors} />}
-        {step === 0 && <StepService data={data} update={update} errors={errors} />}
-        {step === 1 && <StepQuantity data={data} update={update} errors={errors} />}
-        {step === 2 && (
-          <StepLocation
-            data={data}
-            update={update}
-            errors={errors}
-            files={files}
-            onFilesChange={setFiles}
-          />
-        )}
-        {step === 3 && <StepSchedule data={data} update={update} errors={errors} />}
-        {step === 4 && <StepReview data={data} update={update} errors={errors} isGuest={isGuest} />}
+        <div key={step} className="wizard-step-enter">
+          {step === -1 && <GuestGate data={data} update={update} errors={errors} />}
+          {step === 0 && <StepService data={data} update={update} errors={errors} />}
+          {step === 1 && <StepQuantity data={data} update={update} errors={errors} />}
+          {step === 2 && (
+            <StepLocation
+              data={data}
+              update={update}
+              errors={errors}
+              files={files}
+              onFilesChange={setFiles}
+            />
+          )}
+          {step === 3 && <StepSchedule data={data} update={update} errors={errors} />}
+          {step === 4 && <StepReview data={data} update={update} errors={errors} isGuest={isGuest} />}
+        </div>
 
         <div className="mt-8 flex flex-col-reverse gap-3 border-t border-navy-100 pt-6 sm:flex-row sm:justify-between">
           {step > (isGuest ? -1 : 0) ? (

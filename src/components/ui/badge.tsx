@@ -25,7 +25,7 @@ export function Badge({
   return (
     <span className={cn('inline-flex items-center gap-2 whitespace-nowrap', className)}>
       <span className={cn('h-3.5 w-[3px] shrink-0', TONE_BAR[tone])} aria-hidden />
-      <span className={cn('font-mono text-[11px] font-medium uppercase tracking-wide2', TONE_TEXT[tone])}>
+      <span className={cn('font-sans text-[11px] font-medium uppercase tracking-wide2', TONE_TEXT[tone])}>
         {children}
       </span>
     </span>
@@ -47,7 +47,7 @@ export function QuotationStatusBadge({ status }: { status: QuotationStatus }) {
 export function UrgencyBadge({ urgency }: { urgency: 'normal' | 'urgente' }) {
   if (urgency === 'normal') return null;
   return (
-    <span className="inline-flex items-center border border-gold-400 px-1.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wide2 text-gold-700">
+    <span className="inline-flex items-center border border-gold-400 px-1.5 py-0.5 font-sans text-[10px] font-medium uppercase tracking-wide2 text-gold-700">
       Urgente
     </span>
   );

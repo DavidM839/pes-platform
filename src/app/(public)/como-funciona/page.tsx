@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ButtonLink } from '@/components/ui/button';
+import { Reveal } from '@/components/ui/reveal';
 import { DisclaimerNotice } from '@/components/request/disclaimer-notice';
 
 export const metadata: Metadata = { title: 'Cómo funciona' };
@@ -39,11 +40,11 @@ export default function ComoFuncionaPage() {
         gestionamos con los operadores y mantenemos la comunicación contigo durante todo el proceso.
       </p>
 
-      <ol className="mt-16 divide-y divide-navy-100 border-t-2 border-navy-900">
+      <Reveal as="ol" className="motion-stagger mt-16 divide-y divide-navy-100 border-t-2 border-navy-900">
         {STEPS.map((step) => (
-          <li key={step.n} className="grid gap-3 py-8 lg:grid-cols-12 lg:gap-10">
+          <li key={step.n} className="grid gap-3 py-8 transition-[transform,background-color] duration-200 hover:translate-x-1 hover:bg-mist/60 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-1">
-              <span className="font-mono text-[13px] tabular-nums text-gold-700">{step.n}</span>
+              <span className="font-sans text-[13px] tabular-nums text-gold-700">{step.n}</span>
             </div>
             <h2 className="text-[19px] font-semibold leading-snug text-navy-900 lg:col-span-4">
               {step.title}
@@ -51,7 +52,7 @@ export default function ComoFuncionaPage() {
             <p className="text-[14px] leading-relaxed text-navy-600 lg:col-span-7">{step.text}</p>
           </li>
         ))}
-      </ol>
+      </Reveal>
 
       <DisclaimerNotice className="mt-12" />
 

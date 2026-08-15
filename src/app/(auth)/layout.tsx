@@ -38,8 +38,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               { icon: Droplets, label: 'Agua potable', tone: 'bg-sky-50 text-sky-600' },
               { icon: Truck, label: 'Coordinación', tone: 'bg-navy-50 text-navy-600' },
             ].map(({ icon: Icon, label, tone }) => (
-              <li key={label} className="flex flex-col items-center gap-2 text-center">
-                <span className={`grid h-11 w-11 place-items-center rounded-lg ${tone}`}>
+              <li key={label} className="group flex flex-col items-center gap-2 text-center">
+                <span className={`icon-response grid h-11 w-11 place-items-center rounded-lg ${tone}`}>
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
                 <span className="text-xs text-navy-500">{label}</span>
@@ -62,7 +62,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
           <Link
             href="/"
-            className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-navy-500 hover:text-navy-800"
+            className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-navy-500 transition-[color,transform] duration-200 hover:-translate-x-0.5 hover:text-navy-800"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
             Volver al inicio

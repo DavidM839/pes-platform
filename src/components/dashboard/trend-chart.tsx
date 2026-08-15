@@ -53,13 +53,13 @@ export function TrendChart({
           dataKey="label"
           tickLine={false}
           axisLine={false}
-          tick={{ fontSize: 11, fill: '#7690B8', fontFamily: 'var(--font-mono)' }}
+          tick={{ fontSize: 11, fill: '#7690B8', fontFamily: 'var(--font-sans)' }}
           dy={6}
         />
         <YAxis
           tickLine={false}
           axisLine={false}
-          tick={{ fontSize: 11, fill: '#7690B8', fontFamily: 'var(--font-mono)' }}
+          tick={{ fontSize: 11, fill: '#7690B8', fontFamily: 'var(--font-sans)' }}
           allowDecimals={false}
           width={40}
         />

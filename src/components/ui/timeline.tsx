@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import type { RequestStatus, RequestStatusHistory } from '@/types';
 
 /**
- * Linea de tiempo como registro de bitacora: numeros de paso en monoespaciada
+ * Linea de tiempo como registro de bitacora: numeros de paso tabulares
  * y una regla vertical continua. Sin circulos ni iconos de verificacion.
  */
 export function RequestTimeline({
@@ -49,7 +49,7 @@ export function RequestTimeline({
             />
             <span
               className={cn(
-                'relative z-10 grid h-[27px] w-[27px] shrink-0 place-items-center border font-mono text-[10px] tabular-nums',
+                'relative z-10 grid h-[27px] w-[27px] shrink-0 place-items-center border font-sans transition-[background-color,border-color,color,transform] duration-200 text-[10px] tabular-nums',
                 isCurrent && 'border-navy-900 bg-navy-900 text-white',
                 done && !isCurrent && 'border-navy-900 bg-white text-navy-900',
                 pending && 'border-navy-100 bg-white text-navy-300',
@@ -67,7 +67,7 @@ export function RequestTimeline({
                 {REQUEST_STATUS_LABELS[step]}
               </p>
               {entry && (
-                <p className="mt-0.5 font-mono text-[11px] tabular-nums text-navy-500">
+                <p className="mt-0.5 font-sans text-[11px] tabular-nums text-navy-500">
                   {formatDateTime(entry.created_at)}
                 </p>
               )}

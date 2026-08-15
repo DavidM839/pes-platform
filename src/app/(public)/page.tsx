@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ArrowRight, Droplet, Fuel } from 'lucide-react';
 import { Logo } from '@/components/brand/logo';
 import { ButtonLink } from '@/components/ui/button';
+import { Reveal } from '@/components/ui/reveal';
 import { DisclaimerNotice } from '@/components/request/disclaimer-notice';
 import { WhatsAppButton } from '@/components/whatsapp/whatsapp-button';
 import { PhotoStrip } from '@/components/marketing/photo-strip';
@@ -84,7 +85,7 @@ export default async function HomePage() {
                   ['Respuesta', 'Cotización tras verificación'],
                 ].map(([k, v]) => (
                   <div key={k} className="flex items-baseline justify-between gap-4 py-3.5">
-                    <dt className="font-mono text-[10px] uppercase tracking-eyebrow text-navy-500">{k}</dt>
+                    <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-navy-500">{k}</dt>
                     <dd className="text-right text-[13px] font-medium text-navy-900">{v}</dd>
                   </div>
                 ))}
@@ -100,7 +101,7 @@ export default async function HomePage() {
         {/* Encabezado del servicio con foto del camión */}
         <div className="pes-container grid gap-10 pt-16 sm:pt-20 lg:grid-cols-12 lg:items-center lg:gap-12">
           <div className="lg:col-span-6">
-            <span className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wide2 text-gold-400">
+            <span className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-wide2 text-gold-400">
               <Fuel className="h-3.5 w-3.5" aria-hidden />
               Servicio 01
             </span>
@@ -121,13 +122,13 @@ export default async function HomePage() {
           </div>
 
           <div className="lg:col-span-6">
-            <div className="relative aspect-[16/11] overflow-hidden rounded-2xl">
+            <div className="group relative aspect-[16/11] overflow-hidden rounded-2xl shadow-[0_18px_46px_-32px_rgba(4,11,29,0.55)]">
               <Image
                 src="/images/diesel/hero.jpg"
                 alt="Camión cisterna de diésel PES en Ciudad de Panamá"
                 fill
                 sizes="(min-width: 1024px) 560px, 100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 priority
               />
             </div>
@@ -150,7 +151,7 @@ export default async function HomePage() {
         {/* Encabezado del servicio con foto del camión */}
         <div className="pes-container grid gap-10 pt-16 sm:pt-20 lg:grid-cols-12 lg:items-center lg:gap-12">
           <div className="lg:col-span-6 lg:order-2">
-            <span className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-wide2 text-gold-400">
+            <span className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-wide2 text-gold-400">
               <Droplet className="h-3.5 w-3.5" aria-hidden />
               Servicio 02
             </span>
@@ -172,13 +173,13 @@ export default async function HomePage() {
           </div>
 
           <div className="lg:col-span-6 lg:order-1">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
+            <div className="group relative aspect-[16/10] overflow-hidden rounded-2xl shadow-[0_18px_46px_-32px_rgba(4,11,29,0.55)]">
               <Image
                 src="/images/agua/hero.jpg"
                 alt="Camión cisterna de agua potable PES en un puerto de Panamá"
                 fill
                 sizes="(min-width: 1024px) 560px, 100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
               />
             </div>
           </div>
@@ -217,15 +218,15 @@ export default async function HomePage() {
           <p className="pes-eyebrow">Proceso</p>
           <h2 className="mt-3 text-[28px] font-semibold leading-tight sm:text-[34px]">Cómo funciona</h2>
 
-          <ol className="mt-12 grid gap-px bg-navy-100 md:grid-cols-2 lg:grid-cols-4">
+          <Reveal as="ol" className="motion-stagger mt-12 grid gap-px bg-navy-100 md:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((step) => (
-              <li key={step.n} className="border-t-2 border-navy-900 bg-white p-6">
-                <span className="font-mono text-[11px] tabular-nums text-gold-700">{step.n}</span>
+              <li key={step.n} className="group border-t-2 border-navy-900 bg-white p-6 transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-1 hover:bg-mist hover:shadow-[0_14px_30px_-26px_rgba(4,11,29,0.6)]">
+                <span className="font-sans text-[11px] tabular-nums text-gold-700">{step.n}</span>
                 <h3 className="mt-4 text-[15px] font-semibold leading-snug text-navy-900">{step.title}</h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-navy-600">{step.text}</p>
               </li>
             ))}
-          </ol>
+          </Reveal>
 
           <DisclaimerNotice className="mt-10 bg-white" />
         </div>
@@ -242,7 +243,7 @@ export default async function HomePage() {
           </div>
           <dl className="divide-y divide-navy-100 border-t-2 border-navy-900 lg:col-span-8">
             {ADVANTAGES.map(([title, text]) => (
-              <div key={title} className="grid gap-1 py-5 sm:grid-cols-3 sm:gap-6">
+              <div key={title} className="grid gap-1 py-5 transition-[transform,background-color] duration-200 hover:translate-x-1 hover:bg-white/60 sm:grid-cols-3 sm:gap-6">
                 <dt className="text-[15px] font-semibold text-navy-900">{title}</dt>
                 <dd className="text-[14px] leading-relaxed text-navy-600 sm:col-span-2">{text}</dd>
               </div>

@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
  * no por un halo difuso.
  */
 const fieldBase =
-  'w-full rounded-sm border bg-white px-3.5 text-sm text-navy-900 placeholder:text-navy-400 transition-colors disabled:cursor-not-allowed disabled:bg-mist disabled:text-navy-400';
+  'w-full rounded-sm border bg-white px-3.5 text-sm text-navy-900 placeholder:text-navy-400 shadow-sm shadow-transparent transition-[border-color,box-shadow,background-color] duration-200 ease-out focus:ring-2 focus:ring-navy-900/10 disabled:cursor-not-allowed disabled:bg-mist disabled:text-navy-400';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
@@ -20,8 +20,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       className={cn(
         fieldBase,
         'h-11',
-        // Las cifras y fechas se leen mejor en monoespaciada
-        (type === 'number' || type === 'date' || type === 'datetime-local' || type === 'tel') && 'font-mono tabular-nums',
+        (type === 'number' || type === 'date' || type === 'datetime-local' || type === 'tel') && 'tabular-nums',
         error ? 'border-red-600 focus:border-red-700' : 'border-navy-200 focus:border-navy-900',
         className,
       )}
@@ -95,7 +94,7 @@ export function Field({ label, htmlFor, required, hint, error, className, childr
       )}
       {children}
       {hint && !error && <p className="pes-hint">{hint}</p>}
-      {error && <p className="font-mono text-[11px] text-red-700">{error}</p>}
+      {error && <p className="font-sans text-[11px] text-red-700">{error}</p>}
     </div>
   );
 }
@@ -111,7 +110,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       <label
         htmlFor={id}
         className={cn(
-          'flex cursor-pointer items-start gap-3 border p-4 transition-colors',
+          'flex cursor-pointer items-start gap-3 border p-4 transition-[border-color,background-color,transform,box-shadow] duration-200 ease-out hover:-translate-y-px hover:shadow-sm',
           error ? 'border-red-600 bg-red-50/50' : 'border-navy-200 bg-white hover:border-navy-900',
           className,
         )}
@@ -125,7 +124,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         />
         <span className="text-sm leading-relaxed text-navy-700">{label}</span>
       </label>
-      {error && <p className="font-mono text-[11px] text-red-700">{error}</p>}
+      {error && <p className="font-sans text-[11px] text-red-700">{error}</p>}
     </div>
   ),
 );

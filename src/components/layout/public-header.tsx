@@ -20,7 +20,7 @@ export function PublicHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-navy-100 bg-white">
+    <header className="sticky top-0 z-40 border-b border-navy-100 bg-white/95 shadow-[0_1px_0_rgba(4,11,29,0.02)] backdrop-blur-md">
       <div className="pes-container flex h-[68px] items-center justify-between gap-6">
         <Logo height={34} priority />
 
@@ -31,9 +31,10 @@ export function PublicHeader() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'border-b-2 pb-1 font-mono text-[11px] uppercase tracking-wide2 transition-colors',
-                  active ? 'border-gold-400 text-navy-900' : 'border-transparent text-navy-600 hover:text-navy-900',
+                  'link-underline pb-1 font-sans text-[11px] font-semibold uppercase tracking-wide2 transition-colors',
+                  active ? 'text-navy-900' : 'text-navy-600 hover:text-navy-900',
                 )}
               >
                 {item.label}
@@ -45,7 +46,7 @@ export function PublicHeader() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/iniciar-sesion"
-            className="font-mono text-[11px] uppercase tracking-wide2 text-navy-600 hover:text-navy-900"
+            className="font-sans text-[11px] uppercase tracking-wide2 text-navy-600 hover:text-navy-900"
           >
             Iniciar sesión
           </Link>
@@ -55,7 +56,7 @@ export function PublicHeader() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center text-navy-900 hover:bg-mist lg:hidden"
+          className="grid h-10 w-10 place-items-center rounded-md text-navy-900 transition-[transform,background-color] duration-200 hover:bg-mist active:scale-95 lg:hidden"
           aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
           aria-expanded={open}
         >
@@ -63,14 +64,20 @@ export function PublicHeader() {
         </button>
       </div>
 
-      <div className={cn('border-t border-navy-100 bg-white lg:hidden', open ? 'block' : 'hidden')}>
+      <div
+        className={cn(
+          'grid border-t border-navy-100 bg-white shadow-lg shadow-navy-950/5 transition-[grid-template-rows,opacity] duration-300 ease-out lg:hidden',
+          open ? 'grid-rows-[1fr] opacity-100' : 'pointer-events-none grid-rows-[0fr] opacity-0',
+        )}
+      >
+        <div className="overflow-hidden">
         <nav className="pes-container flex flex-col divide-y divide-navy-100 py-1">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="py-3.5 font-mono text-[12px] uppercase tracking-wide2 text-navy-700"
+              className="py-3.5 font-sans text-[12px] font-semibold uppercase tracking-wide2 text-navy-700 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-navy-900"
             >
               {item.label}
             </Link>
@@ -84,6 +91,7 @@ export function PublicHeader() {
             </ButtonLink>
           </div>
         </nav>
+        </div>
       </div>
     </header>
   );

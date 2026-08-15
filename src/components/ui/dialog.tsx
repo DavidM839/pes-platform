@@ -33,22 +33,22 @@ export function Dialog({ open, onClose, title, description, children, footer, si
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4" role="dialog" aria-modal="true">
-      <div className="absolute inset-0 bg-navy-900/45" onClick={onClose} aria-hidden />
+      <div className="absolute inset-0 animate-fade-in bg-navy-900/45 backdrop-blur-[2px]" onClick={onClose} aria-hidden />
       <div
         className={cn(
-          'relative w-full animate-fade-in border-t-2 border-navy-900 bg-white shadow-panel',
+          'relative w-full animate-dialog-in border-t-2 border-navy-900 bg-white shadow-panel',
           sizes[size],
         )}
       >
         <div className="flex items-start justify-between gap-4 border-b border-navy-100 px-5 py-4">
           <div>
-            <h2 className="font-mono text-[12px] font-medium uppercase tracking-eyebrow text-navy-900">{title}</h2>
+            <h2 className="font-sans text-[12px] font-medium uppercase tracking-eyebrow text-navy-900">{title}</h2>
             {description && <p className="mt-1 text-sm text-navy-500">{description}</p>}
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="-mr-1 rounded-md p-1 text-navy-300 hover:bg-mist hover:text-navy-600"
+            className="-mr-1 rounded-md p-1 text-navy-300 transition-[transform,background-color,color] duration-200 hover:rotate-90 hover:bg-mist hover:text-navy-600"
             aria-label="Cerrar"
           >
             <X className="h-5 w-5" />

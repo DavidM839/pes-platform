@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 export default function ConfigurarAccesoPage() {
   return (
     <div className="mx-auto max-w-md px-6 py-16">
-      <h1 className="font-display text-2xl font-semibold text-navy-900">Configurar acceso</h1>
+      <h1 className="font-sans text-2xl font-semibold text-navy-900">Configurar acceso</h1>
       <p className="mt-2 text-sm leading-relaxed text-navy-500">
         Crea o repara tu cuenta y entra al instante, sin necesidad de confirmar el correo. Úsalo
         para tu primer acceso como cliente o como administrador.

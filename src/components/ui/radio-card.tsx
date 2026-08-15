@@ -42,13 +42,13 @@ export function RadioCardGroup<T extends string>({
             aria-checked={selected}
             onClick={() => onChange(opt.value)}
             className={cn(
-              'relative border p-5 text-left transition-colors',
+              'group relative border p-5 text-left transition-[border-color,background-color,transform,box-shadow] duration-200 ease-out hover:-translate-y-px hover:shadow-sm',
               selected ? 'border-navy-900 bg-white' : 'border-navy-200 bg-white hover:border-navy-400',
             )}
           >
             {selected && <span className="absolute inset-x-0 top-0 h-[3px] bg-gold-400" aria-hidden />}
             {Icon && (
-              <Icon className={cn('h-5 w-5', selected ? 'text-navy-900' : 'text-navy-400')} aria-hidden />
+              <Icon className={cn('icon-response h-5 w-5', selected ? 'text-navy-900' : 'text-navy-400')} aria-hidden />
             )}
             <span className={cn('mt-3 block text-[15px] font-semibold', selected ? 'text-navy-900' : 'text-navy-700')}>
               {opt.label}
@@ -63,7 +63,7 @@ export function RadioCardGroup<T extends string>({
   );
 }
 
-/** Cantidades preestablecidas: botones rectos con la cifra en monoespaciada. */
+/** Cantidades preestablecidas: botones rectos con cifras tabulares. */
 export function ChipGroup({
   value,
   onChange,
@@ -81,7 +81,7 @@ export function ChipGroup({
           type="button"
           onClick={() => onChange(opt.value)}
           className={cn(
-            'h-11 min-w-[96px] border px-4 font-mono text-[13px] tabular-nums transition-colors',
+            'h-11 min-w-[96px] border px-4 font-sans text-[13px] font-medium tabular-nums transition-[border-color,background-color,color,transform] duration-200 hover:-translate-y-px active:translate-y-0',
             value === opt.value
               ? 'border-navy-900 bg-navy-900 text-white'
               : 'border-navy-200 bg-white text-navy-700 hover:border-navy-900',

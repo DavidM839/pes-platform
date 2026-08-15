@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('pes-card', className)} {...props} />;
+  return <div className={cn('pes-card pes-card-hover', className)} {...props} />;
 }
 
 /** Cabecera con la etiqueta en versalitas y una regla inferior. */
@@ -18,7 +18,7 @@ export function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDiv
 export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn('font-mono text-[11px] font-medium uppercase tracking-eyebrow text-navy-900', className)}
+      className={cn('font-sans text-[11px] font-medium uppercase tracking-eyebrow text-navy-900', className)}
       {...props}
     />
   );

@@ -12,6 +12,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Reveal } from '@/components/ui/reveal';
 
 const STRIP_ICONS = {
   truck: Truck,
@@ -42,7 +43,7 @@ export interface PhotoStripItem {
  */
 export function PhotoStrip({ items, className }: { items: PhotoStripItem[]; className?: string }) {
   return (
-    <div
+    <Reveal
       className={cn(
         'flex snap-x snap-mandatory gap-1 overflow-x-auto pb-1 sm:grid sm:overflow-visible',
         className,
@@ -54,7 +55,7 @@ export function PhotoStrip({ items, className }: { items: PhotoStripItem[]; clas
         return (
           <figure
             key={it.src}
-            className="group relative w-[68%] shrink-0 snap-start overflow-hidden sm:w-auto"
+            className="group relative w-[68%] shrink-0 snap-start overflow-hidden transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_16px_34px_-24px_rgba(4,11,29,0.65)] sm:w-auto"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-navy-900">
               <Image
@@ -62,19 +63,19 @@ export function PhotoStrip({ items, className }: { items: PhotoStripItem[]; clas
                 alt={it.alt}
                 fill
                 sizes="(min-width: 1024px) 260px, 68vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.055]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950/25 to-transparent" />
             </div>
             <figcaption className="flex items-center gap-2 bg-gold-400 px-3 py-2.5">
               <Icon className="h-4 w-4 shrink-0 text-navy-900" aria-hidden />
-              <span className="font-mono text-[10px] font-bold uppercase leading-tight tracking-wide2 text-navy-900">
+              <span className="font-sans text-[10px] font-bold uppercase leading-tight tracking-wide2 text-navy-900">
                 {it.label}
               </span>
             </figcaption>
           </figure>
         );
       })}
-    </div>
+    </Reveal>
   );
 }

@@ -9,7 +9,7 @@ import type { Config } from 'tailwindcss';
  *   gold 400 = #E0A402   dorado de interfaz
  *
  * Decisiones deliberadas: esquinas practicamente rectas, sin sombras suaves,
- * y una monoespaciada para cifras. La jerarquia la construyen las reglas y el
+ * y una sola familia tipográfica neutra para texto y cifras. La jerarquia la construyen las reglas y el
  * espaciado, no las tarjetas flotantes.
  */
 const config: Config = {
@@ -61,9 +61,9 @@ const config: Config = {
         panel: '0 16px 48px -12px rgba(0, 23, 60, 0.22)',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'var(--font-sans)', 'system-ui', 'sans-serif'],
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        display: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         eyebrow: '0.18em',
@@ -71,8 +71,25 @@ const config: Config = {
       },
       keyframes: {
         'fade-in': { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+        'page-in': {
+          '0%': { opacity: '0', transform: 'translateY(7px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'dialog-in': {
+          '0%': { opacity: '0', transform: 'translateY(12px) scale(0.985)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
+        'drawer-in': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
       },
-      animation: { 'fade-in': 'fade-in 0.15s ease-out' },
+      animation: {
+        'fade-in': 'fade-in 0.2s ease-out',
+        'page-in': 'page-in 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
+        'dialog-in': 'dialog-in 0.24s cubic-bezier(0.22, 1, 0.36, 1)',
+        'drawer-in': 'drawer-in 0.24s cubic-bezier(0.22, 1, 0.36, 1)',
+      },
     },
   },
   plugins: [],

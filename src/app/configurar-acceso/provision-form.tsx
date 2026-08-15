@@ -28,7 +28,7 @@ export function ProvisionForm() {
       </Field>
 
       <fieldset className="space-y-2">
-        <legend className="mb-2 block font-mono text-[11px] font-medium uppercase tracking-wide2 text-navy-600">
+        <legend className="mb-2 block font-sans text-[11px] font-medium uppercase tracking-wide2 text-navy-600">
           Tipo de cuenta
         </legend>
         <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-navy-200 px-4 py-3 text-sm text-navy-700 has-[:checked]:border-navy-900 has-[:checked]:bg-mist">

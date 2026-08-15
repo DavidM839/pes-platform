@@ -26,7 +26,7 @@ const sizes: Record<Size, string> = {
 };
 
 const base =
-  'inline-flex items-center justify-center whitespace-nowrap rounded-sm font-mono font-medium uppercase tracking-wide2 transition-colors disabled:cursor-not-allowed disabled:opacity-60 select-none';
+  'group inline-flex items-center justify-center whitespace-nowrap rounded-sm font-sans font-semibold uppercase tracking-wide2 shadow-none transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out hover:-translate-y-px active:translate-y-0 active:scale-[0.985] disabled:translate-y-0 disabled:scale-100 disabled:cursor-not-allowed disabled:opacity-60 select-none';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;

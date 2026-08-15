@@ -44,7 +44,7 @@ export function WhatsAppButton({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        'no-print inline-flex items-center justify-center whitespace-nowrap rounded-sm font-mono font-medium uppercase tracking-wide2 transition-colors',
+        'no-print inline-flex items-center justify-center whitespace-nowrap rounded-sm font-sans font-medium uppercase tracking-wide2 transition-colors',
         variants[variant],
         sizes[size],
         fullWidth && 'w-full',

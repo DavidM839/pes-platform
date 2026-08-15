@@ -24,6 +24,7 @@ import { siteConfig } from '@/config/site';
 import { formatPhone } from '@/lib/format';
 import { waMessages, whatsappLink } from '@/lib/whatsapp';
 import { cn } from '@/lib/utils';
+import { Reveal } from '@/components/ui/reveal';
 import type { PhotoStripItem } from './photo-strip';
 
 /**
@@ -45,13 +46,13 @@ const TRUST_BADGES: { icon: LucideIcon; label: string }[] = [
 
 export function TrustBadges({ className }: { className?: string }) {
   return (
-    <ul className={cn('flex flex-wrap gap-x-9 gap-y-5', className)}>
+    <ul className={cn('motion-stagger flex flex-wrap gap-x-9 gap-y-5', className)}>
       {TRUST_BADGES.map(({ icon: Icon, label }) => (
-        <li key={label} className="flex items-center gap-3">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold-400 text-navy-900">
+        <li key={label} className="group flex items-center gap-3">
+          <span className="icon-response grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold-400 text-navy-900">
             <Icon className="h-5 w-5" aria-hidden />
           </span>
-          <span className="font-mono text-[11px] font-semibold uppercase leading-tight tracking-wide2 text-navy-900">
+          <span className="font-sans text-[11px] font-semibold uppercase leading-tight tracking-wide2 text-navy-900">
             {label}
           </span>
         </li>
@@ -87,18 +88,18 @@ export function SectorsGrid({
         <span className="inline-block border-b-2 border-gold-400 pb-2">Sectores que atendemos</span>
       </p>
 
-      <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-4 lg:grid-cols-8">
+      <Reveal className="motion-stagger mt-10 grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-4 lg:grid-cols-8">
         {items.map(({ icon: Icon, label }) => (
-          <div key={label} className="flex flex-col items-center gap-3 px-2 text-center">
-            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-gold-400 text-gold-500">
+          <div key={label} className="group flex flex-col items-center gap-3 px-2 text-center">
+            <span className="icon-response grid h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-gold-400 text-gold-500">
               <Icon className="h-6 w-6" aria-hidden />
             </span>
-            <span className="font-mono text-[10.5px] font-semibold uppercase leading-snug tracking-wide2 text-navy-800">
+            <span className="font-sans text-[10.5px] font-semibold uppercase leading-snug tracking-wide2 text-navy-800">
               {label}
             </span>
           </div>
         ))}
-      </div>
+      </Reveal>
     </div>
   );
 }
@@ -190,15 +191,15 @@ export function FeatureBar({
 }) {
   const cols = features.length >= 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-4';
   return (
-    <div className={cn('rounded-2xl bg-navy-900 px-6 py-10 sm:px-10 sm:py-12', className)}>
+    <Reveal className={cn('rounded-2xl bg-navy-900 px-6 py-10 sm:px-10 sm:py-12', className)}>
       <div className={cn('grid gap-9 divide-y divide-white/10 sm:grid-cols-2 sm:gap-8 sm:divide-y-0 lg:divide-x', cols)}>
         {features.map(({ icon: Icon, title, text }, i) => (
-          <div key={title} className={cn('flex flex-col items-start gap-4 pt-9 first:pt-0 sm:pt-0', i > 0 && 'lg:pl-6')}>
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-2 border-gold-400 text-gold-400">
+          <div key={title} className={cn('group flex flex-col items-start gap-4 pt-9 first:pt-0 sm:pt-0', i > 0 && 'lg:pl-6')}>
+            <span className="icon-response grid h-12 w-12 shrink-0 place-items-center rounded-full border-2 border-gold-400 text-gold-400">
               <Icon className="h-5 w-5" aria-hidden />
             </span>
             <div>
-              <h3 className="font-mono text-[12.5px] font-bold uppercase tracking-wide2 text-white">
+              <h3 className="font-sans text-[12.5px] font-bold uppercase tracking-wide2 text-white">
                 {title}
               </h3>
               <p className="mt-2 text-[13px] leading-relaxed text-navy-200">{text}</p>
@@ -206,7 +207,7 @@ export function FeatureBar({
           </div>
         ))}
       </div>
-    </div>
+    </Reveal>
   );
 }
 
@@ -238,7 +239,7 @@ export function OperationStrip({ className }: { className?: string }) {
           <Icon className="pointer-events-none absolute right-3 top-3 h-7 w-7 text-white/15" aria-hidden />
           <div className="flex w-full items-center gap-2 bg-gold-400 px-3 py-2.5">
             <Icon className="h-4 w-4 shrink-0 text-navy-900" aria-hidden />
-            <span className="font-mono text-[10px] font-bold uppercase leading-tight tracking-wide2 text-navy-900">
+            <span className="font-sans text-[10px] font-bold uppercase leading-tight tracking-wide2 text-navy-900">
               {label}
             </span>
           </div>
@@ -270,37 +271,37 @@ export function ContactBar({
           href={whatsappLink(waMessages.general(), wa)}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 pt-6 first:pt-0 sm:pt-0"
+          className="group flex items-center gap-3 pt-6 transition-transform duration-200 first:pt-0 hover:translate-x-1 sm:pt-0"
         >
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold-400 text-navy-900">
             <MessageCircle className="h-4.5 w-4.5" aria-hidden />
           </span>
           <span>
-            <span className="block font-mono text-[10px] uppercase tracking-wide2 text-gold-400">
+            <span className="block font-sans text-[10px] uppercase tracking-wide2 text-gold-400">
               Cotiza ahora
             </span>
-            <span className="block font-mono text-[13px] font-semibold tabular-nums text-white">
+            <span className="block font-sans text-[13px] font-semibold tabular-nums text-white">
               {formatPhone(wa ?? '')}
             </span>
           </span>
         </a>
 
-        <a href={`mailto:${mail}`} className="flex items-center gap-3 pt-6 sm:pt-0 sm:pl-6">
+        <a href={`mailto:${mail}`} className="group flex items-center gap-3 pt-6 transition-transform duration-200 hover:translate-x-1 sm:pt-0 sm:pl-6">
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold-400 text-navy-900">
             <Mail className="h-4.5 w-4.5" aria-hidden />
           </span>
           <span>
-            <span className="block font-mono text-[10px] uppercase tracking-wide2 text-gold-400">Correo</span>
+            <span className="block font-sans text-[10px] uppercase tracking-wide2 text-gold-400">Correo</span>
             <span className="block text-[13px] font-medium text-white">{mail}</span>
           </span>
         </a>
 
-        <div className="flex items-center gap-3 pt-6 sm:pt-0 sm:pl-6">
+        <div className="group flex items-center gap-3 pt-6 transition-transform duration-200 hover:translate-x-1 sm:pt-0 sm:pl-6">
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold-400 text-navy-900">
             <Clock className="h-4.5 w-4.5" aria-hidden />
           </span>
           <span>
-            <span className="block font-mono text-[10px] uppercase tracking-wide2 text-gold-400">Atención</span>
+            <span className="block font-sans text-[10px] uppercase tracking-wide2 text-gold-400">Atención</span>
             <span className="block text-[13px] font-medium text-white">24 horas · 365 días del año</span>
           </span>
         </div>

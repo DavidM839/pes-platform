@@ -98,7 +98,7 @@ function NavLinks({
             onClick={onNavigate}
             aria-current={active ? 'page' : undefined}
             className={cn(
-              'relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] transition-colors',
+              'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] transition-[background-color,color,transform] duration-200 ease-out hover:translate-x-0.5',
               dark
                 ? active
                   ? 'bg-white/10 font-semibold text-white'
@@ -113,7 +113,7 @@ function NavLinks({
             )}
             <Icon
               className={cn(
-                'h-[18px] w-[18px] shrink-0',
+                'icon-response h-[18px] w-[18px] shrink-0',
                 dark
                   ? active
                     ? 'text-gold-400'
@@ -136,25 +136,25 @@ function UserBlock({ user, dark = false }: { user: SidebarProps['user']; dark?: 
   return (
     <div className={cn('p-3', dark ? 'border-t border-white/10' : 'border-t border-navy-100')}>
       <div className="flex items-center gap-3 px-4 py-2">
-        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-400 font-mono text-[10px] font-medium text-navy-900">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-400 font-sans text-[10px] font-medium text-navy-900">
           {initials(user.name)}
         </span>
         <div className="min-w-0 flex-1">
           <p className={cn('truncate text-sm font-medium', dark ? 'text-white' : 'text-navy-900')}>{user.name}</p>
-          <p className={cn('truncate font-mono text-[10px]', dark ? 'text-navy-300' : 'text-navy-400')}>{user.email}</p>
+          <p className={cn('truncate font-sans text-[10px]', dark ? 'text-navy-300' : 'text-navy-400')}>{user.email}</p>
         </div>
       </div>
       <form action={signOut}>
         <button
           type="submit"
           className={cn(
-            'mt-0.5 flex w-full items-center gap-3 rounded-lg px-4 py-2.5 text-[13px] font-medium transition-colors',
+            'mt-0.5 flex w-full items-center gap-3 rounded-lg px-4 py-2.5 text-[13px] font-medium transition-[background-color,color,transform] duration-200 hover:translate-x-0.5',
             dark
               ? 'text-navy-200 hover:bg-white/5 hover:text-white'
               : 'text-navy-600 hover:bg-mist hover:text-navy-900',
           )}
         >
-          <LogOut className={cn('h-[18px] w-[18px] shrink-0', dark ? 'text-navy-300' : 'text-navy-300')} aria-hidden />
+          <LogOut className={cn('icon-response h-[18px] w-[18px] shrink-0', dark ? 'text-navy-300' : 'text-navy-300')} aria-hidden />
           Cerrar sesión
         </button>
       </form>
@@ -174,7 +174,7 @@ export function Sidebar({ items, user, title, variant = 'client' }: SidebarProps
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="grid h-10 w-10 place-items-center text-navy-700 hover:bg-mist"
+          className="grid h-10 w-10 place-items-center rounded-md text-navy-700 transition-[transform,background-color] duration-200 hover:bg-mist active:scale-95"
           aria-label="Abrir menú"
         >
           <Menu className="h-5 w-5" />
@@ -184,14 +184,14 @@ export function Sidebar({ items, user, title, variant = 'client' }: SidebarProps
       {/* Cajón móvil */}
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-navy-900/25" onClick={() => setOpen(false)} aria-hidden />
-          <aside className={cn('relative flex h-full w-[280px] flex-col', dark ? 'bg-navy-950' : 'bg-white')}>
+          <div className="absolute inset-0 animate-fade-in bg-navy-900/30 backdrop-blur-[2px]" onClick={() => setOpen(false)} aria-hidden />
+          <aside className={cn('relative flex h-full w-[280px] animate-drawer-in flex-col shadow-2xl shadow-navy-950/20', dark ? 'bg-navy-950' : 'bg-white')}>
             <div className={cn('flex h-16 items-center justify-between px-4', dark ? 'border-b border-white/10' : 'border-b border-navy-100')}>
               <Logo height={30} href="/" variant={dark ? 'white' : 'primary'} />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className={cn('grid h-9 w-9 place-items-center', dark ? 'text-navy-200 hover:bg-white/10' : 'text-navy-700 hover:bg-mist')}
+                className={cn('grid h-9 w-9 place-items-center transition-[transform,background-color,color] duration-200 hover:rotate-90', dark ? 'text-navy-200 hover:bg-white/10' : 'text-navy-700 hover:bg-mist')}
                 aria-label="Cerrar menú"
               >
                 <X className="h-5 w-5" />
@@ -216,7 +216,7 @@ export function Sidebar({ items, user, title, variant = 'client' }: SidebarProps
         {title && (
           <p
             className={cn(
-              'px-4 pb-3 pt-4 font-mono text-[10px] font-medium uppercase tracking-eyebrow',
+              'px-4 pb-3 pt-4 font-sans text-[10px] font-medium uppercase tracking-eyebrow',
               dark ? 'border-b border-white/10 text-navy-300' : 'border-b border-navy-100 text-navy-400',
             )}
           >

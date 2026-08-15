@@ -30,7 +30,7 @@ export function InternalNotes({ requestId, notes }: { requestId: string; notes: 
           <Lock className="h-4 w-4 text-navy-300" aria-hidden />
           Notas internas
         </CardTitle>
-        <span className="border border-navy-200 px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wide2 text-navy-500">
+        <span className="border border-navy-200 px-2 py-0.5 font-sans text-[10px] font-medium uppercase tracking-wide2 text-navy-500">
           Solo PES
         </span>
       </CardHeader>

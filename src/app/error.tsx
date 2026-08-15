@@ -17,7 +17,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
           No pudimos completar la operacion. Intenta de nuevo; si el problema continua, comunícate
           con nuestro equipo.
         </p>
-        {error.digest && <p className="mt-3 font-mono text-[11px] text-navy-400">Referencia: {error.digest}</p>}
+        {error.digest && <p className="mt-3 font-sans text-[11px] text-navy-400">Referencia: {error.digest}</p>}
         <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
           <Button onClick={reset}>Intentar de nuevo</Button>
           <ButtonLink href="/" variant="secondary">Ir al inicio</ButtonLink>
