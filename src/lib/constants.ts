@@ -79,6 +79,6 @@ export const DISCLAIMER =
 export const TERMS_CHECKBOX_TEXT =
   'Entiendo que esta solicitud no confirma automáticamente precio, disponibilidad ni horario. PES se comunicará conmigo después de verificar la información.';
 
-export const MAX_UPLOAD_FILES = 5;
+export const MAX_UPLOAD_FILES = 3;
 export const MAX_UPLOAD_SIZE_BYTES = 5 * 1024 * 1024;
 export const ACCEPTED_UPLOAD_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];

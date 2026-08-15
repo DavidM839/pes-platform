@@ -3,16 +3,55 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogOut, Menu, X, type LucideIcon } from 'lucide-react';
+import {
+  BarChart3,
+  ClipboardList,
+  FileText,
+  HelpCircle,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  Package,
+  PlusCircle,
+  ReceiptText,
+  Settings,
+  User,
+  Users,
+  X,
+  type LucideIcon,
+} from 'lucide-react';
 import { Logo } from '@/components/brand/logo';
 import { signOut } from '@/lib/actions/auth';
 import { initials } from '@/lib/format';
 import { cn } from '@/lib/utils';
 
+/**
+ * Los iconos se referencian por NOMBRE (string), no por componente. Así el
+ * array de navegación puede construirse en un Server Component (los layouts) y
+ * pasarse a este Client Component sin romper la serialización: en Next no se
+ * pueden pasar funciones/componentes de servidor a cliente. El nombre se
+ * resuelve aquí contra este mapa.
+ */
+export const NAV_ICONS = {
+  dashboard: LayoutDashboard,
+  nueva: PlusCircle,
+  solicitudes: FileText,
+  cotizaciones: ReceiptText,
+  perfil: User,
+  ayuda: HelpCircle,
+  clipboard: ClipboardList,
+  clientes: Users,
+  servicios: Package,
+  reportes: BarChart3,
+  configuracion: Settings,
+} satisfies Record<string, LucideIcon>;
+
+export type NavIconName = keyof typeof NAV_ICONS;
+
 export interface NavItem {
   href: string;
   label: string;
-  icon: LucideIcon;
+  icon: NavIconName;
   exact?: boolean;
 }
 
@@ -20,6 +59,8 @@ interface SidebarProps {
   items: NavItem[];
   user: { name: string; email: string; role?: string };
   title?: string;
+  /** 'client' = franja navy sólida (prototipo del cliente); 'admin' = ítem activo dorado tenue (prototipo del admin). */
+  variant?: 'client' | 'admin';
 }
 
 function isActive(pathname: string, item: NavItem) {
@@ -27,17 +68,29 @@ function isActive(pathname: string, item: NavItem) {
 }
 
 /**
- * Navegacion lateral sobre blanco.
- * El item activo se marca con un relleno dorado tenue, una barra dorada a la
- * izquierda y texto navy: suficiente contraste sin recurrir a fondos oscuros.
+ * Navegacion lateral sobre blanco. Según los prototipos:
+ * - Cliente: el item activo se marca con una franja navy sólida de ancho
+ *   completo y texto blanco (ícono dorado).
+ * - Admin: el item activo se marca con relleno dorado tenue, barra dorada a la
+ *   izquierda y texto navy.
  */
-function NavLinks({ items, onNavigate }: { items: NavItem[]; onNavigate?: () => void }) {
+function NavLinks({
+  items,
+  variant = 'client',
+  onNavigate,
+}: {
+  items: NavItem[];
+  variant?: 'client' | 'admin';
+  onNavigate?: () => void;
+}) {
   const pathname = usePathname();
+  const dark = variant === 'admin'; // Admin: barra lateral navy completa.
 
   return (
-    <nav className="flex-1 overflow-y-auto py-3">
+    <nav className={cn('flex-1 overflow-y-auto py-3', dark ? 'px-3' : 'px-2')}>
       {items.map((item) => {
         const active = isActive(pathname, item);
+        const Icon = NAV_ICONS[item.icon];
         return (
           <Link
             key={item.href}
@@ -45,20 +98,30 @@ function NavLinks({ items, onNavigate }: { items: NavItem[]; onNavigate?: () => 
             onClick={onNavigate}
             aria-current={active ? 'page' : undefined}
             className={cn(
-              'relative flex items-center gap-3 px-4 py-2.5 text-[13px] transition-colors',
-              active
-                ? 'bg-mist font-semibold text-navy-900'
-                : 'font-medium text-navy-600 hover:bg-mist hover:text-navy-900',
+              'relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] transition-colors',
+              dark
+                ? active
+                  ? 'bg-white/10 font-semibold text-white'
+                  : 'font-medium text-navy-200 hover:bg-white/5 hover:text-white'
+                : active
+                  ? 'bg-navy-900 font-semibold text-white'
+                  : 'font-medium text-navy-600 hover:bg-mist hover:text-navy-900',
             )}
           >
-            {active && (
-              <span
-                className="absolute inset-y-0 left-0 w-[3px] bg-gold-400"
-                aria-hidden
-              />
+            {active && dark && (
+              <span className="absolute inset-y-1.5 left-0 w-[3px] rounded-full bg-gold-400" aria-hidden />
             )}
-            <item.icon
-              className={cn('h-[18px] w-[18px] shrink-0', active ? 'text-navy-900' : 'text-navy-300')}
+            <Icon
+              className={cn(
+                'h-[18px] w-[18px] shrink-0',
+                dark
+                  ? active
+                    ? 'text-gold-400'
+                    : 'text-navy-300'
+                  : active
+                    ? 'text-gold-400'
+                    : 'text-navy-300',
+              )}
               aria-hidden
             />
             <span className="truncate">{item.label}</span>
@@ -69,24 +132,29 @@ function NavLinks({ items, onNavigate }: { items: NavItem[]; onNavigate?: () => 
   );
 }
 
-function UserBlock({ user }: { user: SidebarProps['user'] }) {
+function UserBlock({ user, dark = false }: { user: SidebarProps['user']; dark?: boolean }) {
   return (
-    <div className="border-t border-navy-100 p-3">
+    <div className={cn('p-3', dark ? 'border-t border-white/10' : 'border-t border-navy-100')}>
       <div className="flex items-center gap-3 px-4 py-2">
-        <span className="grid h-9 w-9 shrink-0 place-items-center bg-navy-900 font-mono text-[10px] font-medium text-white">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold-400 font-mono text-[10px] font-medium text-navy-900">
           {initials(user.name)}
         </span>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-medium text-navy-900">{user.name}</p>
-          <p className="truncate font-mono text-[10px] text-navy-400">{user.email}</p>
+          <p className={cn('truncate text-sm font-medium', dark ? 'text-white' : 'text-navy-900')}>{user.name}</p>
+          <p className={cn('truncate font-mono text-[10px]', dark ? 'text-navy-300' : 'text-navy-400')}>{user.email}</p>
         </div>
       </div>
       <form action={signOut}>
         <button
           type="submit"
-          className="mt-0.5 flex w-full items-center gap-3 px-4 py-2.5 text-[13px] font-medium text-navy-600 transition-colors hover:bg-mist hover:text-navy-900"
+          className={cn(
+            'mt-0.5 flex w-full items-center gap-3 rounded-lg px-4 py-2.5 text-[13px] font-medium transition-colors',
+            dark
+              ? 'text-navy-200 hover:bg-white/5 hover:text-white'
+              : 'text-navy-600 hover:bg-mist hover:text-navy-900',
+          )}
         >
-          <LogOut className="h-[18px] w-[18px] shrink-0 text-navy-300" aria-hidden />
+          <LogOut className={cn('h-[18px] w-[18px] shrink-0', dark ? 'text-navy-300' : 'text-navy-300')} aria-hidden />
           Cerrar sesión
         </button>
       </form>
@@ -94,8 +162,9 @@ function UserBlock({ user }: { user: SidebarProps['user'] }) {
   );
 }
 
-export function Sidebar({ items, user, title }: SidebarProps) {
+export function Sidebar({ items, user, title, variant = 'client' }: SidebarProps) {
   const [open, setOpen] = useState(false);
+  const dark = variant === 'admin';
 
   return (
     <>
@@ -116,36 +185,46 @@ export function Sidebar({ items, user, title }: SidebarProps) {
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-navy-900/25" onClick={() => setOpen(false)} aria-hidden />
-          <aside className="relative flex h-full w-[280px] flex-col bg-white">
-            <div className="flex h-16 items-center justify-between border-b border-navy-100 px-4">
-              <Logo height={30} href="/" />
+          <aside className={cn('relative flex h-full w-[280px] flex-col', dark ? 'bg-navy-950' : 'bg-white')}>
+            <div className={cn('flex h-16 items-center justify-between px-4', dark ? 'border-b border-white/10' : 'border-b border-navy-100')}>
+              <Logo height={30} href="/" variant={dark ? 'white' : 'primary'} />
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="grid h-9 w-9 place-items-center text-navy-700 hover:bg-mist"
+                className={cn('grid h-9 w-9 place-items-center', dark ? 'text-navy-200 hover:bg-white/10' : 'text-navy-700 hover:bg-mist')}
                 aria-label="Cerrar menú"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <NavLinks items={items} onNavigate={() => setOpen(false)} />
-            <UserBlock user={user} />
+            <NavLinks items={items} variant={variant} onNavigate={() => setOpen(false)} />
+            <UserBlock user={user} dark={dark} />
           </aside>
         </div>
       )}
 
       {/* Sidebar de escritorio */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-[260px] flex-col border-r border-navy-100 bg-white lg:flex">
-        <div className="flex h-[68px] shrink-0 items-center border-b border-navy-100 px-5">
-          <Logo height={32} href="/" />
+      <aside
+        className={cn(
+          'fixed inset-y-0 left-0 z-30 hidden w-[260px] flex-col lg:flex',
+          dark ? 'bg-navy-950' : 'border-r border-navy-100 bg-white',
+        )}
+      >
+        <div className={cn('flex h-[68px] shrink-0 items-center px-5', dark ? 'border-b border-white/10' : 'border-b border-navy-100')}>
+          <Logo height={32} href="/" variant={dark ? 'white' : 'primary'} />
         </div>
         {title && (
-          <p className="border-b border-navy-100 px-4 pb-3 pt-4 font-mono text-[10px] font-medium uppercase tracking-eyebrow text-navy-400">
+          <p
+            className={cn(
+              'px-4 pb-3 pt-4 font-mono text-[10px] font-medium uppercase tracking-eyebrow',
+              dark ? 'border-b border-white/10 text-navy-300' : 'border-b border-navy-100 text-navy-400',
+            )}
+          >
             {title}
           </p>
         )}
-        <NavLinks items={items} />
-        <UserBlock user={user} />
+        <NavLinks items={items} variant={variant} />
+        <UserBlock user={user} dark={dark} />
       </aside>
     </>
   );

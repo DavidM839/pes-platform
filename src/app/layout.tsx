@@ -1,24 +1,34 @@
 import type { Metadata, Viewport } from 'next';
-import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
+import { Barlow_Condensed, Manrope, Space_Mono } from 'next/font/google';
 import { Toaster } from 'sonner';
 import { siteConfig } from '@/config/site';
 import './globals.css';
 
 /**
- * IBM Plex: una sans de origen tecnico con una monoespaciada hermana.
- * La mono se usa para cifras, folios y etiquetas: es lo que le da a la
- * interfaz aspecto de herramienta operativa y no de plantilla.
+ * Sistema tipográfico de PES:
+ *  - Barlow Condensed (principal / display): condensada con carácter, para
+ *    titulares y cifras grandes. Aporta impacto y presencia de marca.
+ *  - Manrope (secundaria / cuerpo): sans redondeada y muy legible para el
+ *    cuerpo de texto y la interfaz.
+ *  - Space Mono (mono): monoespaciada para etiquetas, folios y detalles técnicos.
  */
-const plexSans = IBM_Plex_Sans({
+const fontDisplay = Barlow_Condensed({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['500', '600', '700'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const fontSans = Manrope({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
   display: 'swap',
 });
 
-const plexMono = IBM_Plex_Mono({
+const fontMono = Space_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '700'],
   variable: '--font-mono',
   display: 'swap',
 });
@@ -48,7 +58,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="es" className={`${fontDisplay.variable} ${fontSans.variable} ${fontMono.variable}`}>
       <body className="min-h-screen font-sans">
         {children}
         <Toaster

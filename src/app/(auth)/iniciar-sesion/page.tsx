@@ -32,6 +32,17 @@ export default async function LoginPage({
         </div>
       )}
 
+      {params.error === 'enlace-invalido' && (
+        <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          El enlace de confirmación no es válido o ya expiró. No te preocupes: ya no hace falta
+          confirmar por correo. Inicia sesión abajo con tu correo y contraseña, o usa{' '}
+          <Link href="/configurar-acceso" className="font-semibold underline">
+            Configurar acceso
+          </Link>{' '}
+          para crear tu cuenta y entrar al instante.
+        </div>
+      )}
+
       <LoginForm next={params.next} />
 
       <p className="mt-8 text-center text-sm text-navy-500">
@@ -44,6 +55,18 @@ export default async function LoginPage({
           solicitar servicio
         </Link>
       </p>
+
+      <div className="mt-6 border-t border-navy-100 pt-5 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-eyebrow text-navy-400">
+          Equipo PES
+        </p>
+        <Link
+          href="/configurar-acceso"
+          className="mt-1.5 inline-block text-sm font-medium text-navy-600 hover:text-navy-900"
+        >
+          Configurar o acceder como administrador
+        </Link>
+      </div>
     </div>
   );
 }

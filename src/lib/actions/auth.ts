@@ -3,6 +3,7 @@
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { loginSchema, profileSchema, recoverSchema, registerSchema } from '@/lib/validations/auth';
 import { siteConfig } from '@/config/site';
 import type { ActionResult } from '@/types';
@@ -37,15 +38,50 @@ export async function signIn(_prev: unknown, formData: FormData): Promise<Action
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword(parsed.data);
+
+  // Primer intento de inicio de sesión.
+  let { error } = await supabase.auth.signInWithPassword(parsed.data);
+
+  // Si el único problema es que el correo no está confirmado, lo confirmamos
+  // automáticamente con el cliente de servicio y reintentamos. Esto elimina la
+  // dependencia de los enlaces de correo (que fallan en local por PKCE/SMTP).
+  if (error && error.message.toLowerCase().includes('email not confirmed')) {
+    try {
+      const admin = createAdminClient();
+      // Buscar el usuario por correo y marcarlo como confirmado.
+      const { data: list } = await admin.auth.admin.listUsers();
+      const target = list?.users?.find(
+        (u) => u.email?.toLowerCase() === parsed.data.email.toLowerCase(),
+      );
+      if (target) {
+        await admin.auth.admin.updateUserById(target.id, { email_confirm: true });
+        // Reintentar el inicio de sesión ya confirmado.
+        ({ error } = await supabase.auth.signInWithPassword(parsed.data));
+      }
+    } catch {
+      // Si no hay service role disponible, se cae al manejo de error normal.
+    }
+  }
+
   if (error) return { ok: false, error: translateAuthError(error.message) };
 
   const { data: { user } } = await supabase.auth.getUser();
-  const { data: profile } = await supabase.from('users').select('role').eq('id', user!.id).single();
+
+  // maybeSingle(): si por algún motivo la fila de public.users todavía no existe
+  // (p. ej. el trigger no corrió), no se lanza excepción; se asume rol cliente.
+  let role: string | null = null;
+  if (user) {
+    const { data: profile } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', user.id)
+      .maybeSingle();
+    role = profile?.role ?? null;
+  }
 
   const next = String(formData.get('next') ?? '');
   revalidatePath('/', 'layout');
-  redirect(next || (profile?.role === 'admin' ? '/admin' : '/portal'));
+  redirect(next || (role === 'admin' ? '/admin' : '/portal'));
 }
 
 export async function signUp(_prev: unknown, formData: FormData): Promise<ActionResult> {
@@ -62,17 +98,60 @@ export async function signUp(_prev: unknown, formData: FormData): Promise<Action
   }
 
   const { email, password, full_name, company_name, phone } = parsed.data;
-  const supabase = await createClient();
 
-  const { error } = await supabase.auth.signUp({
+  // Registro reinventado: en lugar de depender del enlace de confirmación por
+  // correo (frágil en local: PKCE cross-device, sin SMTP), se crea la cuenta ya
+  // CONFIRMADA con el cliente de servicio y se inicia sesión de inmediato.
+  const admin = createAdminClient();
+
+  const { data: created, error: createError } = await admin.auth.admin.createUser({
     email,
     password,
-    options: {
-      data: { full_name, company_name: company_name || null, phone, role: 'client' },
-      emailRedirectTo: `${siteConfig.url}/auth/callback`,
-    },
+    email_confirm: true,
+    user_metadata: { full_name, company_name: company_name || null, phone, role: 'client' },
   });
-  if (error) return { ok: false, error: translateAuthError(error.message) };
+
+  if (createError) {
+    // Si ya existía, intentamos iniciar sesión directamente (por si el usuario
+    // se había registrado antes y quedó sin confirmar).
+    const msg = createError.message.toLowerCase();
+    if (msg.includes('already') || msg.includes('registered') || msg.includes('exists')) {
+      const supabase = await createClient();
+      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      if (signInError) {
+        return {
+          ok: false,
+          error:
+            'Ya existe una cuenta con este correo. Si es tuya, inicia sesión; si olvidaste la contraseña, usa "Olvidaste tu contraseña".',
+        };
+      }
+      revalidatePath('/', 'layout');
+      redirect('/portal');
+    }
+    return { ok: false, error: translateAuthError(createError.message) };
+  }
+
+  // Asegurar la fila en public.users con el rol correcto (por si el trigger
+  // corrió sin el metadata o no corrió).
+  if (created?.user) {
+    await admin
+      .from('users')
+      .upsert(
+        { id: created.user.id, email, full_name, role: 'client', is_active: true },
+        { onConflict: 'id' },
+      );
+  }
+
+  // Iniciar sesión de inmediato con la cuenta ya confirmada.
+  const supabase = await createClient();
+  const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+  if (signInError) {
+    // La cuenta quedó creada; si el auto-login fallara, se informa para entrar manual.
+    return {
+      ok: true,
+      message: 'Tu cuenta fue creada. Ya puedes iniciar sesión con tu correo y contraseña.',
+    };
+  }
 
   revalidatePath('/', 'layout');
   redirect('/portal');

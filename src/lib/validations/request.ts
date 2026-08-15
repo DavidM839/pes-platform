@@ -104,7 +104,7 @@ export const createRequestSchema = step1Schema
   .merge(step5Schema)
   .merge(guestSchema.partial())
   .extend({
-    attachment_paths: z.array(z.string()).max(5).optional(),
+    attachment_paths: z.array(z.string()).max(3).optional(),
     save_address: z.boolean().optional(),
   })
   .refine((d) => d.quantity_unknown || d.quantity_gal !== null, {

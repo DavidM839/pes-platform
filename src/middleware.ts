@@ -56,7 +56,7 @@ export async function middleware(request: NextRequest) {
       .from('users')
       .select('role, is_active')
       .eq('id', user.id)
-      .single();
+      .maybeSingle();
 
     const role = profile?.role;
 

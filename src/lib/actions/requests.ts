@@ -161,6 +161,16 @@ export async function createServiceRequest(
     );
   }
 
+  // Guarda el teléfono en el perfil del cliente para prellenarlo en próximos
+  // pedidos (solo si el perfil aún no tiene uno registrado).
+  if (user && clientProfileId && d.contact_phone) {
+    await db
+      .from('client_profiles')
+      .update({ phone: d.contact_phone })
+      .eq('id', clientProfileId)
+      .is('phone', null);
+  }
+
   // Dirección frecuente, si el cliente lo pidio.
   if (user && d.save_address) {
     await authed.from('addresses').insert({

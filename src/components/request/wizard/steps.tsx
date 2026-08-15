@@ -1,6 +1,6 @@
 'use client';
 
-import { Droplets, Fuel, Info } from 'lucide-react';
+import { ChevronDown, Droplets, Fuel, Info } from 'lucide-react';
 import { ChipGroup, RadioCardGroup } from '@/components/ui/radio-card';
 import { FileUpload, type UploadedFile } from '@/components/ui/file-upload';
 import { Checkbox, Field, Input, Select, Textarea } from '@/components/ui/input';
@@ -262,50 +262,60 @@ export function StepLocation({
             onChange={(e) => update({ reference_point: e.target.value })}
           />
         </Field>
-
-        <Field label="Instrucciones de acceso" htmlFor="access_instructions" hint="Opcional. Portones, horarios, permisos." error={errors.access_instructions}>
-          <Input
-            id="access_instructions"
-            placeholder="Entrada por el sótano, avisar en garita"
-            value={data.access_instructions ?? ''}
-            onChange={(e) => update({ access_instructions: e.target.value })}
-          />
-        </Field>
-
-        <Field label="Capacidad aproximada del tanque (galones)" htmlFor="tank_capacity_gal" hint="Opcional" error={errors.tank_capacity_gal}>
-          <Input
-            id="tank_capacity_gal"
-            type="number"
-            inputMode="numeric"
-            min={1}
-            className="no-spinner"
-            placeholder="Ejemplo: 2000"
-            value={data.tank_capacity_gal ?? ''}
-            onChange={(e) => update({ tank_capacity_gal: e.target.value ? Number(e.target.value) : null })}
-          />
-        </Field>
-
-        <Field label="Nivel actual aproximado (%)" htmlFor="current_level_pct" hint="Opcional. De 0 a 100." error={errors.current_level_pct}>
-          <Input
-            id="current_level_pct"
-            type="number"
-            inputMode="numeric"
-            min={0}
-            max={100}
-            className="no-spinner"
-            placeholder="Ejemplo: 25"
-            value={data.current_level_pct ?? ''}
-            onChange={(e) => update({ current_level_pct: e.target.value ? Number(e.target.value) : null })}
-          />
-        </Field>
       </div>
 
       <Field
-        label="Fotografías del tanque o del acceso"
-        hint="Opcional. Nos ayudan a coordinar mejor la entrega. Se almacenan de forma privada."
+        label="Fotos de referencia del lugar de entrega"
+        hint="Recomendado (hasta 3). Fotos de la entrada, el tanque o el punto de descarga ayudan al asesor a coordinar la entrega. Se almacenan de forma privada."
       >
         <FileUpload files={files} onChange={onFilesChange} />
       </Field>
+
+      {/* Detalles avanzados, colapsados para no recargar el formulario.
+          Siguen disponibles para quien quiera aportarlos. */}
+      <details className="group rounded-card border border-navy-100 bg-mist/40">
+        <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-[13px] font-medium text-navy-700 transition-colors hover:text-navy-900">
+          <span>Detalles adicionales del tanque y acceso (opcional)</span>
+          <ChevronDown className="h-4 w-4 shrink-0 text-navy-400 transition-transform group-open:rotate-180" aria-hidden />
+        </summary>
+        <div className="grid gap-5 border-t border-navy-100 px-4 py-5 sm:grid-cols-2">
+          <Field label="Instrucciones de acceso" htmlFor="access_instructions" hint="Portones, horarios, permisos." error={errors.access_instructions} className="sm:col-span-2">
+            <Input
+              id="access_instructions"
+              placeholder="Entrada por el sótano, avisar en garita"
+              value={data.access_instructions ?? ''}
+              onChange={(e) => update({ access_instructions: e.target.value })}
+            />
+          </Field>
+
+          <Field label="Capacidad aproximada del tanque (galones)" htmlFor="tank_capacity_gal" error={errors.tank_capacity_gal}>
+            <Input
+              id="tank_capacity_gal"
+              type="number"
+              inputMode="numeric"
+              min={1}
+              className="no-spinner"
+              placeholder="Ejemplo: 2000"
+              value={data.tank_capacity_gal ?? ''}
+              onChange={(e) => update({ tank_capacity_gal: e.target.value ? Number(e.target.value) : null })}
+            />
+          </Field>
+
+          <Field label="Nivel actual aproximado (%)" htmlFor="current_level_pct" hint="De 0 a 100." error={errors.current_level_pct}>
+            <Input
+              id="current_level_pct"
+              type="number"
+              inputMode="numeric"
+              min={0}
+              max={100}
+              className="no-spinner"
+              placeholder="Ejemplo: 25"
+              value={data.current_level_pct ?? ''}
+              onChange={(e) => update({ current_level_pct: e.target.value ? Number(e.target.value) : null })}
+            />
+          </Field>
+        </div>
+      </details>
     </div>
   );
 }

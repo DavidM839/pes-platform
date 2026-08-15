@@ -14,6 +14,7 @@ export function RegisterForm() {
   return (
     <form action={action} className="mt-7 space-y-5" noValidate>
       {state && !state.ok && <Notice tone="danger">{state.error}</Notice>}
+      {state && state.ok && state.message && <Notice tone="gold">{state.message}</Notice>}
 
       <Field label="Nombre completo" htmlFor="full_name" required error={err('full_name')}>
         <Input id="full_name" name="full_name" autoComplete="name" placeholder="Juan Perez" required />
@@ -43,7 +44,7 @@ export function RegisterForm() {
 
       <p className="text-xs leading-relaxed text-navy-500">
         Al crear tu cuenta aceptas los{' '}
-        <Link href="/términos" className="font-medium text-navy-700 underline">términos y condiciones</Link> y el{' '}
+        <Link href="/terminos" className="font-medium text-navy-700 underline">términos y condiciones</Link> y el{' '}
         <Link href="/privacidad" className="font-medium text-navy-700 underline">aviso de privacidad</Link>.
       </p>
 

@@ -51,10 +51,13 @@ export function Topbar({
 
         <div className="flex items-center gap-2.5 border-l border-navy-100 pl-3">
           <div className="text-right">
-            <p className="text-[13px] font-medium leading-tight text-navy-900">{user.name}</p>
+            <p className="text-[13px] font-medium leading-tight text-navy-900">
+              <span className="text-navy-400">Bienvenido, </span>
+              {user.name}
+            </p>
             <p className="font-mono text-[10px] text-navy-400">{user.email}</p>
           </div>
-          <span className="grid h-9 w-9 place-items-center bg-navy-900 font-mono text-[10px] font-medium text-white">
+          <span className="grid h-9 w-9 place-items-center rounded-full bg-navy-900 font-mono text-[10px] font-medium text-white">
             {initials(user.name)}
           </span>
         </div>

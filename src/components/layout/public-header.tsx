@@ -49,7 +49,7 @@ export function PublicHeader() {
           >
             Iniciar sesión
           </Link>
-          <ButtonLink href="/solicitar" size="sm">Solicitar servicio</ButtonLink>
+          <ButtonLink href="/solicitar" size="sm">Solicitar cotización</ButtonLink>
         </div>
 
         <button

@@ -1,24 +1,16 @@
 import { redirect } from 'next/navigation';
-import {
-  FileText,
-  HelpCircle,
-  LayoutDashboard,
-  PlusCircle,
-  ReceiptText,
-  User,
-} from 'lucide-react';
 import { Sidebar, type NavItem } from '@/components/layout/sidebar';
 import { Topbar } from '@/components/layout/topbar';
 import { createClient } from '@/lib/supabase/server';
 import { getMyClientProfile, getSessionUser } from '@/lib/supabase/queries';
 
 const NAV: NavItem[] = [
-  { href: '/portal', label: 'Resumen', icon: LayoutDashboard, exact: true },
-  { href: '/portal/solicitudes/nueva', label: 'Nueva solicitud', icon: PlusCircle, exact: true },
-  { href: '/portal/solicitudes', label: 'Mis solicitudes', icon: FileText },
-  { href: '/portal/cotizaciones', label: 'Cotizaciones', icon: ReceiptText },
-  { href: '/portal/perfil', label: 'Perfil', icon: User },
-  { href: '/portal/ayuda', label: 'Ayuda', icon: HelpCircle },
+  { href: '/portal', label: 'Resumen', icon: 'dashboard', exact: true },
+  { href: '/portal/solicitudes/nueva', label: 'Nueva solicitud', icon: 'nueva', exact: true },
+  { href: '/portal/solicitudes', label: 'Mis solicitudes', icon: 'solicitudes' },
+  { href: '/portal/cotizaciones', label: 'Cotizaciones', icon: 'cotizaciones' },
+  { href: '/portal/perfil', label: 'Perfil', icon: 'perfil' },
+  { href: '/portal/ayuda', label: 'Ayuda', icon: 'ayuda' },
 ];
 
 export default async function ClientLayout({ children }: { children: React.ReactNode }) {

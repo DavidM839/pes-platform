@@ -18,8 +18,12 @@ export function PublicFooter({ whatsapp, email }: { whatsapp?: string; email?: s
             {siteConfig.tagline}
           </p>
           <p className="mt-5 max-w-sm text-[13px] leading-relaxed text-navy-600">
-            Coordinamos el suministro de diésel y agua potable por cisterna en Panamá, conectando
-            tu necesidad con compañías operadoras aliadas.
+            Suministro de diésel y agua potable por cisterna, con entrega directa en las instalaciones
+            del cliente en toda Panamá.
+          </p>
+          <p className="mt-4 text-[12px] text-navy-500">
+            PES es una división de{' '}
+            <span className="font-medium text-navy-700">Panama Marine Solutions</span>.
           </p>
         </div>
 
@@ -42,6 +46,10 @@ export function PublicFooter({ whatsapp, email }: { whatsapp?: string; email?: s
                   {formatPhone(wa)}
                 </a>
               </dd>
+            </div>
+            <div>
+              <dt className="font-mono text-[10px] uppercase tracking-eyebrow text-navy-400">Ubicación</dt>
+              <dd className="text-navy-700">{siteConfig.address}</dd>
             </div>
             <div>
               <dt className="font-mono text-[10px] uppercase tracking-eyebrow text-navy-400">Sitio</dt>

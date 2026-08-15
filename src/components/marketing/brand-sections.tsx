@@ -314,16 +314,16 @@ export function ContactBar({
 /* Se muestran como tira horizontal, igual que en los flyers.          */
 /* ------------------------------------------------------------------ */
 export const DIESEL_STRIP_ITEMS: PhotoStripItem[] = [
-  { src: '/images/diesel/flota_moderna.jpg', alt: 'Camión cisterna PES en Ciudad de Panamá', label: 'Flota moderna', icon: 'truck' },
-  { src: '/images/diesel/suministro_seguro.jpg', alt: 'Conexiones y mangueras de descarga de diésel', label: 'Suministro seguro', icon: 'shield' },
-  { src: '/images/diesel/energia_no_se_detiene.jpg', alt: 'Planta eléctrica de respaldo CAT', label: 'Energía que no se detiene', icon: 'zap' },
-  { src: '/images/diesel/operaciones_24_7.jpg', alt: 'Operador PES supervisando la descarga', label: 'Operaciones 24/7', icon: 'clock' },
+  { src: '/images/diesel/flota_moderna.jpg', alt: 'Camión cisterna PES de frente en el puerto', label: 'Flota moderna', icon: 'truck' },
+  { src: '/images/diesel/suministro_seguro.jpg', alt: 'Camión cisterna PES en operación', label: 'Suministro seguro', icon: 'shield' },
+  { src: '/images/diesel/energia_no_se_detiene.jpg', alt: 'Cisterna PES junto a buque en el muelle', label: 'Energía que no se detiene', icon: 'zap' },
+  { src: '/images/diesel/operaciones_24_7.jpg', alt: 'Cisterna PES en el puerto de Panamá', label: 'Operaciones 24/7', icon: 'clock' },
 ];
 
 export const AGUA_STRIP_ITEMS: PhotoStripItem[] = [
-  { src: '/images/agua/plantas_agua.jpg', alt: 'Planta de tratamiento y tuberías de agua potable', label: 'Plantas de tratamiento', icon: 'factory' },
-  { src: '/images/agua/agua_cayendo.jpg', alt: 'Agua potable de calidad en llenado', label: 'Agua potable de calidad', icon: 'droplet' },
-  { src: '/images/agua/barco_carga.jpg', alt: 'Barcaza de suministro en puerto', label: 'Suministro a embarcaciones', icon: 'ship' },
-  { src: '/images/agua/manguera_puerto.jpg', alt: 'Mangueras de carga en muelle', label: 'Operación en puertos', icon: 'anchor' },
-  { src: '/images/agua/ciudad_panama.jpg', alt: 'Vista de la bahía de Ciudad de Panamá', label: 'Cobertura nacional', icon: 'map' },
+  { src: '/images/agua/plantas_agua.jpg', alt: 'Camión cisterna de agua potable conectado a un buque', label: 'Suministro a buques', icon: 'ship' },
+  { src: '/images/agua/agua_cayendo.jpg', alt: 'Camión cisterna de agua potable en el puerto', label: 'Agua potable', icon: 'droplet' },
+  { src: '/images/agua/barco_carga.jpg', alt: 'Camión cisterna en operación portuaria', label: 'Operación en puertos', icon: 'anchor' },
+  { src: '/images/agua/manguera_puerto.jpg', alt: 'Cisterna junto a embarcación en muelle', label: 'Entrega a embarcaciones', icon: 'ship' },
+  { src: '/images/agua/ciudad_panama.jpg', alt: 'Flota de cisternas PES en el puerto', label: 'Cobertura nacional', icon: 'map' },
 ];

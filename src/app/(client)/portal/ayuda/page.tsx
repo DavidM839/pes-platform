@@ -101,7 +101,7 @@ export default async function AyudaPage() {
           <Card>
             <CardContent className="space-y-2 text-sm">
               <p className="font-semibold text-navy-900">Documentos</p>
-              <Link href="/términos" className="block text-navy-700 hover:text-navy-500">Términos y condiciones</Link>
+              <Link href="/terminos" className="block text-navy-700 hover:text-navy-500">Términos y condiciones</Link>
               <Link href="/privacidad" className="block text-navy-700 hover:text-navy-500">Aviso de privacidad</Link>
             </CardContent>
           </Card>

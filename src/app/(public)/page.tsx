@@ -10,7 +10,6 @@ import {
   AGUA_STRIP_ITEMS,
   AGUA_FEATURES,
   AGUA_SECTORS,
-  DIESEL_STRIP_ITEMS,
   DIESEL_FEATURES,
   DIESEL_SECTORS,
   FeatureBar,
@@ -141,24 +140,8 @@ export default async function HomePage() {
         </div>
 
         {/* Características del diésel */}
-        <div className="pes-container mt-14">
+        <div className="pes-container mt-14 pb-16 sm:pb-20">
           <FeatureBar features={DIESEL_FEATURES} />
-        </div>
-
-        {/* Franja de fotos del diésel (una sola línea, como en el flyer) */}
-        <div className="pes-container mb-16 mt-14 sm:mb-20">
-          <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="pes-eyebrow">Nuestra operación</p>
-              <h3 className="mt-3 text-[24px] font-semibold leading-tight text-navy-900 sm:text-[28px]">
-                Energía que no se detiene
-              </h3>
-            </div>
-            <p className="max-w-sm text-[13px] leading-relaxed text-navy-500">
-              {SERVICE_USES.diesel.join(' · ')}
-            </p>
-          </div>
-          <PhotoStrip items={DIESEL_STRIP_ITEMS} />
         </div>
       </section>
 
@@ -282,7 +265,7 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/solicitar" size="lg">Solicitar servicio</ButtonLink>
+            <ButtonLink href="/solicitar" size="lg">Solicitar cotización</ButtonLink>
             <ButtonLink href="/iniciar-sesion" variant="secondary" size="lg">Ya tengo cuenta</ButtonLink>
           </div>
         </div>

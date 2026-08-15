@@ -12,7 +12,8 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://panamarinesolutions.com',
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'pes@panamarinesolutions.com',
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '50769954353',
-  address: 'Ciudad de Panamá, Republica de Panamá',
+  address: 'Terminal Industrial Zona 1, Corredor Sur, Ciudad de Panamá',
+  parent: 'Panama Marine Solutions',
   logo: {
     primary: '/brand/pes-logo.png',
     white: '/brand/pes-logo-white.png',
