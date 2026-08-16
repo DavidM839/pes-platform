@@ -26,14 +26,8 @@
   }
 
   h1, h2, h3, h4 {
-    @apply font-display text-navy-900 font-semibold;
-    letter-spacing: -0.018em;
-  }
-
-  /* Los titulares grandes cierran mas el tracking: mas presencia y menos
-     aire entre letras, que es lo que da el aspecto premium. */
-  h1 {
-    letter-spacing: -0.03em;
+    @apply font-sans text-navy-900 font-semibold;
+    letter-spacing: -0.01em;
   }
 
   ::selection {
@@ -72,7 +66,7 @@
   }
 
   .pes-label {
-    @apply block font-display text-[11px] font-semibold uppercase tracking-wide2 text-navy-600;
+    @apply block font-sans text-[11px] font-semibold uppercase tracking-wide2 text-navy-600;
   }
 
   .pes-hint {
@@ -81,7 +75,7 @@
 
   /* Rotulo de seccion en versalitas, tomado del tracking del logotipo. */
   .pes-eyebrow {
-    @apply font-display text-[10px] font-semibold uppercase tracking-eyebrow text-navy-500;
+    @apply font-sans text-[10px] font-semibold uppercase tracking-eyebrow text-navy-500;
   }
 
   .pes-num {

@@ -5,7 +5,11 @@ import { getSettings } from '@/lib/supabase/queries';
 
 export const metadata: Metadata = { title: 'Términos y condiciones' };
 
+<<<<<<< HEAD
 const DEFAULT_TERMS = `Naturaleza del servicio. Panama Energy Solutions presta directamente el servicio de suministro de diésel y agua potable por cisterna. PES cuenta con compañías aliadas que asisten y apoyan sus operaciones cuando la demanda o la logística lo requieren.
+=======
+const DEFAULT_TERMS = `Naturaleza del servicio. Panama Energy Solutions actúa como intermediario comercial y coordinador. PES no es propietario de las cisternas; el suministro y el transporte son ejecutados por compañías operadoras aliadas.
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
 
 Solicitudes. El envio de una solicitud a través de esta plataforma no constituye una confirmación de disponibilidad, precio ni horario. Toda solicitud queda sujeta a verificación por parte de PES con los operadores aliados.
 

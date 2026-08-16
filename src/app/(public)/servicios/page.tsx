@@ -18,12 +18,20 @@ export default function ServiciosPage() {
     <div className="pes-container pes-section">
       <p className="pes-eyebrow">Servicios</p>
       <h1 className="mt-3 max-w-2xl text-[32px] font-semibold leading-tight sm:text-[40px]">
+<<<<<<< HEAD
         Suministro por cisterna, de punta a punta
       </h1>
       <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-navy-600">
         Panama Energy Solutions presta directamente el suministro de diésel y agua potable, con el
         respaldo de compañías aliadas que apoyan nuestras operaciones cuando es necesario. Recibimos
         tu solicitud, confirmamos disponibilidad y precio, y te acompañamos hasta la entrega.
+=======
+        Suministro por cisterna, coordinado de punta a punta
+      </h1>
+      <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-navy-600">
+        Panama Energy Solutions coordina el suministro con compañías operadoras aliadas. Recibimos
+        tu solicitud, verificamos disponibilidad y precio, y te acompañamos hasta la entrega.
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
       </p>
 
       <div className="mt-16 space-y-16">
@@ -38,7 +46,7 @@ export default function ServiciosPage() {
               </p>
               <Link
                 href={`/solicitar?servicio=${type}`}
-                className="group mt-6 inline-flex items-center gap-2 border-b-2 border-gold-400 pb-1 font-display text-[11px] font-semibold uppercase tracking-wide2 text-navy-900 transition-[border-color,color] duration-200 hover:border-navy-900"
+                className="group mt-6 inline-flex items-center gap-2 border-b-2 border-gold-400 pb-1 font-sans text-[11px] font-semibold uppercase tracking-wide2 text-navy-900 transition-[border-color,color] duration-200 hover:border-navy-900"
               >
                 Solicitar {title.toLowerCase()}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden />

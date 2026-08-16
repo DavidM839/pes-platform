@@ -14,7 +14,11 @@ export const metadata: Metadata = { title: 'Ayuda' };
 const FAQ = [
   {
     q: 'Cuanto tarda la cotización?',
+<<<<<<< HEAD
     a: 'PES confirma disponibilidad y precio directamente. El tiempo depende del producto y la zona; te notificamos apenas la cotización este lista.',
+=======
+    a: 'PES verifica disponibilidad y precio con las compañías operadoras aliadas. El tiempo depende del producto y la zona; te notificamos apenas la cotización este lista.',
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
   },
   {
     q: 'Mi solicitud confirma el precio y la fecha?',

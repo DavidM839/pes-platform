@@ -11,7 +11,10 @@ import {
   AGUA_STRIP_ITEMS,
   AGUA_FEATURES,
   AGUA_SECTORS,
+<<<<<<< HEAD
   DIESEL_STRIP_ITEMS,
+=======
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
   DIESEL_FEATURES,
   DIESEL_SECTORS,
   FeatureBar,
@@ -24,16 +27,19 @@ import { waMessages } from '@/lib/whatsapp';
 
 const STEPS = [
   { n: '01', title: 'Envía tu solicitud', text: 'Servicio, cantidad, dirección y fecha. Con cuenta o como invitado.' },
+<<<<<<< HEAD
   { n: '02', title: 'PES verifica disponibilidad y precio', text: 'Confirmamos disponibilidad y precio directamente, con apoyo de aliados cuando hace falta.' },
+=======
+  { n: '02', title: 'PES verifica disponibilidad y precio', text: 'Consultamos con las compañías operadoras aliadas.' },
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
   { n: '03', title: 'Recibe y aprueba tu cotización', text: 'Montos, fecha y condiciones. Apruebas en línea.' },
-  { n: '04', title: 'Ejecutamos la entrega', text: 'Programamos el despacho, entregamos y te mantenemos informado.' },
+  { n: '04', title: 'Coordinamos la entrega', text: 'Confirmamos la programación y te mantenemos informado.' },
 ];
 
 const ADVANTAGES = [
   ['Atención rápida', 'Respondemos con prioridad y claridad.'],
-  ['Servicio directo', 'PES ejecuta el suministro y responde por él de principio a fin.'],
+  ['Coordinación centralizada', 'Un solo punto de contacto para todo el proceso.'],
   ['Cotizaciones claras', 'Montos y condiciones detallados, sin sorpresas.'],
-  ['Respaldo operativo', 'Compañías aliadas apoyan nuestras operaciones cuando la demanda lo exige.'],
   ['Servicio en Panamá', 'Cobertura en las principales provincias.'],
   ['Soporte por WhatsApp', 'Habla con un asesor cuando lo necesites.'],
 ];
@@ -44,40 +50,36 @@ export default async function HomePage() {
 
   return (
     <>
+<<<<<<< HEAD
       {/* ================= HERO PRINCIPAL (impactante, estilo referencia) ================= */}
       <section className="relative overflow-hidden bg-navy-950">
-        {/*
-          Fotografia a sangre. El degradado va de navy solido a la izquierda
-          (donde cae el texto) a practicamente transparente a la derecha, para
-          que el camion se lea completo. Antes tapaba casi toda la imagen.
-        */}
+        {/* Fondo: foto de la cisterna con degradado navy encima */}
         <div className="absolute inset-0">
           <Image
             src="/images/hero-principal.jpg"
             alt="Camión cisterna de Panama Energy Solutions en el puerto"
             fill
             priority
-            quality={90}
             sizes="100vw"
-            className="object-cover object-[70%_center]"
+            className="object-cover object-right"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/80 to-navy-950/10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/10 to-navy-950/45" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/95 to-navy-950/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-navy-950/30" />
         </div>
 
         <div className="pes-container relative">
-          <div className="grid gap-10 pb-14 pt-20 sm:pb-16 sm:pt-28 lg:min-h-[86vh] lg:grid-cols-12 lg:items-center lg:gap-10 lg:pb-20 lg:pt-32">
+          <div className="grid gap-10 pb-14 pt-14 sm:pb-20 sm:pt-20 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-7">
-              <p className="font-display text-[11px] font-semibold uppercase tracking-eyebrow text-gold-400">
+              <p className="font-sans text-[11px] font-semibold uppercase tracking-eyebrow text-gold-400">
                 Suministro por cisterna · República de Panamá
               </p>
 
-              <h1 className="mt-6 text-balance text-[38px] font-semibold leading-[1.02] tracking-tight text-white sm:text-[56px] lg:text-[66px]">
+              <h1 className="mt-6 text-balance text-[36px] font-semibold leading-[1.05] tracking-tight text-white sm:text-[50px] lg:text-[58px]">
                 Diésel y agua potable
                 <span className="block text-gold-400">en todo Panamá</span>
               </h1>
 
-              <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-navy-100 sm:text-[16px]">
+              <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-navy-100">
                 Abastecimiento seguro y eficiente mediante camiones cisterna y barcazas, para
                 mantener sus operaciones siempre activas. PES presta el servicio directamente, con el
                 apoyo de compañías aliadas cuando la operación lo requiere.
@@ -85,15 +87,15 @@ export default async function HomePage() {
 
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/solicitar?servicio=diesel" size="lg">
-                  <Fuel className="h-4 w-4" strokeWidth={1.75} aria-hidden />
+                  <Fuel className="h-4 w-4" aria-hidden />
                   Solicitar diésel
                 </ButtonLink>
                 <ButtonLink
                   href="/solicitar?servicio=agua"
                   size="lg"
-                  className="border border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+                  className="border border-white/30 bg-white/5 text-white hover:bg-white/10"
                 >
-                  <Droplet className="h-4 w-4" strokeWidth={1.75} aria-hidden />
+                  <Droplet className="h-4 w-4" aria-hidden />
                   Solicitar agua potable
                 </ButtonLink>
               </div>
@@ -101,7 +103,7 @@ export default async function HomePage() {
 
             {/* Ficha técnica sobre panel translúcido */}
             <aside className="lg:col-span-5">
-              <div className="rounded-2xl border border-white/15 bg-navy-950/55 p-6 backdrop-blur-md">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm">
                 <dl className="divide-y divide-white/10">
                   {[
                     ['Productos', 'Diésel · Agua potable'],
@@ -110,7 +112,7 @@ export default async function HomePage() {
                     ['Respuesta', 'Cotización tras confirmación'],
                   ].map(([k, v]) => (
                     <div key={k} className="flex items-baseline justify-between gap-4 py-3.5">
-                      <dt className="font-display text-[10px] uppercase tracking-eyebrow text-navy-200">{k}</dt>
+                      <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-navy-200">{k}</dt>
                       <dd className="text-right text-[13px] font-medium text-white">{v}</dd>
                     </div>
                   ))}
@@ -126,6 +128,59 @@ export default async function HomePage() {
           <div className="border-t border-white/10 py-6">
             <TrustBadges variant="dark" />
           </div>
+=======
+      {/* ================= HERO GENERAL (ambos servicios) ================= */}
+      <section className="border-b border-navy-100 bg-gradient-to-b from-mist to-white">
+        <div className="pes-container grid gap-14 pb-16 pt-14 sm:pb-20 sm:pt-20 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-7">
+            <p className="pes-eyebrow border-b border-navy-900 pb-2.5">
+              Suministro por cisterna · República de Panamá
+            </p>
+
+            <h1 className="mt-8 text-balance text-[34px] font-semibold leading-[1.08] tracking-tight text-navy-900 sm:text-[46px] lg:text-[54px]">
+              Diésel y agua potable
+              <span className="block text-gold-500">en todo Panamá</span>
+            </h1>
+
+            <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-navy-600">
+              Dos líneas de suministro con un solo interlocutor. Abastecimiento seguro y eficiente
+              mediante camiones cisterna y barcazas, para mantener sus operaciones siempre activas.
+            </p>
+
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="#diesel" size="lg">
+                <Fuel className="h-4 w-4" aria-hidden />
+                Ver diésel
+              </ButtonLink>
+              <ButtonLink href="#agua" variant="secondary" size="lg">
+                <Droplet className="h-4 w-4" aria-hidden />
+                Ver agua potable
+              </ButtonLink>
+            </div>
+
+            <TrustBadges className="mt-10 border-t border-navy-100 pt-8" />
+          </div>
+
+          {/* Ficha tecnica */}
+          <aside className="lg:col-span-5">
+            <div className="border-t-2 border-navy-900">
+              <dl className="divide-y divide-navy-100">
+                {[
+                  ['Productos', 'Diésel · Agua potable'],
+                  ['Modalidad', 'Cisterna · Barcaza'],
+                  ['Cobertura', 'Panamá, Panamá Oeste, Colón'],
+                  ['Respuesta', 'Cotización tras verificación'],
+                ].map(([k, v]) => (
+                  <div key={k} className="flex items-baseline justify-between gap-4 py-3.5">
+                    <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-navy-500">{k}</dt>
+                    <dd className="text-right text-[13px] font-medium text-navy-900">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <DisclaimerNotice className="mt-6" />
+          </aside>
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
         </div>
       </section>
 
@@ -134,7 +189,7 @@ export default async function HomePage() {
         {/* Encabezado del servicio con foto del camión */}
         <div className="pes-container grid gap-10 pt-16 sm:pt-20 lg:grid-cols-12 lg:items-center lg:gap-12">
           <div className="lg:col-span-6">
-            <span className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-1.5 font-display text-[10px] font-semibold uppercase tracking-wide2 text-gold-400">
+            <span className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-wide2 text-gold-400">
               <Fuel className="h-3.5 w-3.5" aria-hidden />
               Servicio 01
             </span>
@@ -157,10 +212,9 @@ export default async function HomePage() {
           <div className="lg:col-span-6">
             <div className="group relative aspect-[16/11] overflow-hidden rounded-2xl shadow-[0_18px_46px_-32px_rgba(4,11,29,0.55)]">
               <Image
-                src="/images/diesel/energia_no_se_detiene.jpg"
-                alt="Planta eléctrica de respaldo abastecida con diésel"
+                src="/images/diesel/hero.jpg"
+                alt="Camión cisterna de diésel PES en Ciudad de Panamá"
                 fill
-                quality={88}
                 sizes="(min-width: 1024px) 560px, 100vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 priority
@@ -175,6 +229,7 @@ export default async function HomePage() {
         </div>
 
         {/* Características del diésel */}
+<<<<<<< HEAD
         <div className="pes-container mt-14">
           <FeatureBar features={DIESEL_FEATURES} />
         </div>
@@ -194,6 +249,11 @@ export default async function HomePage() {
           </div>
           <PhotoStrip items={DIESEL_STRIP_ITEMS} />
         </div>
+=======
+        <div className="pes-container mt-14 pb-16 sm:pb-20">
+          <FeatureBar features={DIESEL_FEATURES} />
+        </div>
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
       </section>
 
       {/* ================= SEGMENTO 2: AGUA POTABLE ================= */}
@@ -201,7 +261,7 @@ export default async function HomePage() {
         {/* Encabezado del servicio con foto del camión */}
         <div className="pes-container grid gap-10 pt-16 sm:pt-20 lg:grid-cols-12 lg:items-center lg:gap-12">
           <div className="lg:col-span-6 lg:order-2">
-            <span className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-1.5 font-display text-[10px] font-semibold uppercase tracking-wide2 text-gold-400">
+            <span className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-wide2 text-gold-400">
               <Droplet className="h-3.5 w-3.5" aria-hidden />
               Servicio 02
             </span>
@@ -226,9 +286,8 @@ export default async function HomePage() {
             <div className="group relative aspect-[16/10] overflow-hidden rounded-2xl shadow-[0_18px_46px_-32px_rgba(4,11,29,0.55)]">
               <Image
                 src="/images/agua/hero.jpg"
-                alt="Suministro de agua potable a embarcación en un puerto de Panamá"
+                alt="Camión cisterna de agua potable PES en un puerto de Panamá"
                 fill
-                quality={88}
                 sizes="(min-width: 1024px) 560px, 100vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
               />
@@ -289,7 +348,7 @@ export default async function HomePage() {
           <div className="lg:col-span-4">
             <p className="pes-eyebrow">Por qué PES</p>
             <h2 className="mt-3 text-[28px] font-semibold leading-tight sm:text-[34px]">
-              Servicio propio, no improvisación
+              Coordinación, no improvisación
             </h2>
           </div>
           <dl className="divide-y divide-navy-100 border-t-2 border-navy-900 lg:col-span-8">

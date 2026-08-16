@@ -35,7 +35,7 @@ export default async function ContactoPage() {
               ['Horario', 'Lunes a viernes · 8:00 a. m. – 5:00 p. m.', null, false],
             ].map(([label, value, href, mono]) => (
               <div key={label as string} className="grid gap-1 py-5 transition-[transform,background-color] duration-200 hover:translate-x-1 hover:bg-mist/60 sm:grid-cols-3 sm:gap-6">
-                <dt className="font-display text-[10px] uppercase tracking-eyebrow text-navy-500">{label}</dt>
+                <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-navy-500">{label}</dt>
                 <dd className={`text-[15px] text-navy-900 sm:col-span-2 ${mono ? 'font-sans tabular-nums' : ''}`}>
                   {href ? (
                     <a href={href as string} className="transition-colors hover:text-gold-700">{value}</a>
