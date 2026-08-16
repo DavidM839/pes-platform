@@ -68,8 +68,8 @@ export function PhotoStrip({ items, className }: { items: PhotoStripItem[]; clas
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950/25 to-transparent" />
             </div>
             <figcaption className="flex items-center gap-2 bg-gold-400 px-3 py-2.5">
-              <Icon className="h-4 w-4 shrink-0 text-navy-900" strokeWidth={1.75} aria-hidden />
-              <span className="font-display text-[10px] font-bold uppercase leading-tight tracking-wide2 text-navy-900">
+              <Icon className="h-4 w-4 shrink-0 text-navy-900" aria-hidden />
+              <span className="font-sans text-[10px] font-bold uppercase leading-tight tracking-wide2 text-navy-900">
                 {it.label}
               </span>
             </figcaption>
