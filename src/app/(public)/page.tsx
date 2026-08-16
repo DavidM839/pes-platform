@@ -11,7 +11,10 @@ import {
   AGUA_STRIP_ITEMS,
   AGUA_FEATURES,
   AGUA_SECTORS,
+<<<<<<< HEAD
   DIESEL_STRIP_ITEMS,
+=======
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
   DIESEL_FEATURES,
   DIESEL_SECTORS,
   FeatureBar,
@@ -24,7 +27,11 @@ import { waMessages } from '@/lib/whatsapp';
 
 const STEPS = [
   { n: '01', title: 'Envía tu solicitud', text: 'Servicio, cantidad, dirección y fecha. Con cuenta o como invitado.' },
+<<<<<<< HEAD
   { n: '02', title: 'PES verifica disponibilidad y precio', text: 'Confirmamos disponibilidad y precio directamente, con apoyo de aliados cuando hace falta.' },
+=======
+  { n: '02', title: 'PES verifica disponibilidad y precio', text: 'Consultamos con las compañías operadoras aliadas.' },
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
   { n: '03', title: 'Recibe y aprueba tu cotización', text: 'Montos, fecha y condiciones. Apruebas en línea.' },
   { n: '04', title: 'Coordinamos la entrega', text: 'Confirmamos la programación y te mantenemos informado.' },
 ];
@@ -43,6 +50,7 @@ export default async function HomePage() {
 
   return (
     <>
+<<<<<<< HEAD
       {/* ================= HERO PRINCIPAL (impactante, estilo referencia) ================= */}
       <section className="relative overflow-hidden bg-navy-950">
         {/* Fondo: foto de la cisterna con degradado navy encima */}
@@ -120,6 +128,59 @@ export default async function HomePage() {
           <div className="border-t border-white/10 py-6">
             <TrustBadges variant="dark" />
           </div>
+=======
+      {/* ================= HERO GENERAL (ambos servicios) ================= */}
+      <section className="border-b border-navy-100 bg-gradient-to-b from-mist to-white">
+        <div className="pes-container grid gap-14 pb-16 pt-14 sm:pb-20 sm:pt-20 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-7">
+            <p className="pes-eyebrow border-b border-navy-900 pb-2.5">
+              Suministro por cisterna · República de Panamá
+            </p>
+
+            <h1 className="mt-8 text-balance text-[34px] font-semibold leading-[1.08] tracking-tight text-navy-900 sm:text-[46px] lg:text-[54px]">
+              Diésel y agua potable
+              <span className="block text-gold-500">en todo Panamá</span>
+            </h1>
+
+            <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-navy-600">
+              Dos líneas de suministro con un solo interlocutor. Abastecimiento seguro y eficiente
+              mediante camiones cisterna y barcazas, para mantener sus operaciones siempre activas.
+            </p>
+
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="#diesel" size="lg">
+                <Fuel className="h-4 w-4" aria-hidden />
+                Ver diésel
+              </ButtonLink>
+              <ButtonLink href="#agua" variant="secondary" size="lg">
+                <Droplet className="h-4 w-4" aria-hidden />
+                Ver agua potable
+              </ButtonLink>
+            </div>
+
+            <TrustBadges className="mt-10 border-t border-navy-100 pt-8" />
+          </div>
+
+          {/* Ficha tecnica */}
+          <aside className="lg:col-span-5">
+            <div className="border-t-2 border-navy-900">
+              <dl className="divide-y divide-navy-100">
+                {[
+                  ['Productos', 'Diésel · Agua potable'],
+                  ['Modalidad', 'Cisterna · Barcaza'],
+                  ['Cobertura', 'Panamá, Panamá Oeste, Colón'],
+                  ['Respuesta', 'Cotización tras verificación'],
+                ].map(([k, v]) => (
+                  <div key={k} className="flex items-baseline justify-between gap-4 py-3.5">
+                    <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-navy-500">{k}</dt>
+                    <dd className="text-right text-[13px] font-medium text-navy-900">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <DisclaimerNotice className="mt-6" />
+          </aside>
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
         </div>
       </section>
 
@@ -168,6 +229,7 @@ export default async function HomePage() {
         </div>
 
         {/* Características del diésel */}
+<<<<<<< HEAD
         <div className="pes-container mt-14">
           <FeatureBar features={DIESEL_FEATURES} />
         </div>
@@ -187,6 +249,11 @@ export default async function HomePage() {
           </div>
           <PhotoStrip items={DIESEL_STRIP_ITEMS} />
         </div>
+=======
+        <div className="pes-container mt-14 pb-16 sm:pb-20">
+          <FeatureBar features={DIESEL_FEATURES} />
+        </div>
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
       </section>
 
       {/* ================= SEGMENTO 2: AGUA POTABLE ================= */}

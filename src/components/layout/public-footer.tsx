@@ -51,6 +51,17 @@ export function PublicFooter({ whatsapp, email }: { whatsapp?: string; email?: s
               <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-navy-400">Ubicación</dt>
               <dd className="text-navy-700">{siteConfig.address}</dd>
             </div>
+<<<<<<< HEAD
+=======
+            <div>
+              <dt className="font-sans text-[10px] uppercase tracking-eyebrow text-navy-400">Sitio</dt>
+              <dd>
+                <a href={siteConfig.url} className="text-navy-700 transition-colors hover:text-navy-900">
+                  {siteConfig.url.replace(/^https?:\/\//, '')}
+                </a>
+              </dd>
+            </div>
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
           </dl>
         </div>
 

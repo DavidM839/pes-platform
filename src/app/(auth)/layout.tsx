@@ -28,8 +28,13 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             Soluciones de energía y agua cuando las necesitas
           </h2>
           <p className="mt-4 max-w-sm leading-relaxed text-navy-600">
+<<<<<<< HEAD
             PES presta directamente el suministro de diésel y agua potable por cisterna en Panamá,
             con el apoyo de compañías aliadas cuando la operación lo requiere.
+=======
+            PES coordina tu suministro de diésel y agua potable por cisterna con compañías
+            operadoras aliadas en Panamá.
+>>>>>>> a7c438e4a48a69b977bd30deb24d61854332ffbc
           </p>
 
           <ul className="mt-10 flex gap-8">
