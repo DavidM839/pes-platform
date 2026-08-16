@@ -33,7 +33,7 @@ export function PublicHeader() {
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'link-underline pb-1 font-sans text-[11px] font-semibold uppercase tracking-wide2 transition-colors',
+                  'link-underline pb-1 font-display text-[11px] font-semibold uppercase tracking-wide2 transition-colors',
                   active ? 'text-navy-900' : 'text-navy-600 hover:text-navy-900',
                 )}
               >
@@ -46,7 +46,7 @@ export function PublicHeader() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/iniciar-sesion"
-            className="font-sans text-[11px] uppercase tracking-wide2 text-navy-600 hover:text-navy-900"
+            className="font-display text-[11px] uppercase tracking-wide2 text-navy-600 hover:text-navy-900"
           >
             Iniciar sesión
           </Link>
@@ -77,7 +77,7 @@ export function PublicHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="py-3.5 font-sans text-[12px] font-semibold uppercase tracking-wide2 text-navy-700 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-navy-900"
+              className="py-3.5 font-display text-[12px] font-semibold uppercase tracking-wide2 text-navy-700 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-navy-900"
             >
               {item.label}
             </Link>
