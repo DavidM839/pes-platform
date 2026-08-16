@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
+import { emailFrom, rfqRecipients } from '@/lib/email/client';
 
 /**
  * Página de diagnóstico para depurar el acceso en local. Muestra si las
@@ -54,6 +55,26 @@ async function checks() {
       detail: `No se pudo conectar: ${(e as Error).message}`,
     });
   }
+
+  // Notificaciones de solicitudes de cotización (RFQ)
+  const resendKey = process.env.RESEND_API_KEY;
+  result.push({
+    label: 'RESEND_API_KEY',
+    ok: !!resendKey,
+    detail: resendKey
+      ? `presente (${resendKey.slice(0, 6)}…)`
+      : 'FALTA — las solicitudes se guardan igual, pero no se enviará el aviso por correo',
+  });
+  result.push({
+    label: 'Correo que recibe cada solicitud',
+    ok: true,
+    detail: rfqRecipients().join(', '),
+  });
+  result.push({
+    label: 'Remitente de los correos (EMAIL_FROM)',
+    ok: !!process.env.EMAIL_FROM,
+    detail: emailFrom() + (process.env.EMAIL_FROM ? '' : ' (valor por defecto: verifica el dominio en Resend)'),
+  });
 
   // Sesión actual
   try {

@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
+import { notifyNewRequest } from '@/lib/email/notify';
 import { canTransition } from '@/lib/status';
 import {
   changeStatusSchema,
@@ -139,7 +140,7 @@ export async function createServiceRequest(
       terms_accepted_at: new Date().toISOString(),
       is_guest: isGuest,
     })
-    .select('id, request_number, access_token')
+    .select('id, request_number, access_token, created_at')
     .single();
 
   if (error || !request) {
@@ -186,6 +187,70 @@ export async function createServiceRequest(
       access_instructions: d.access_instructions || null,
       tank_capacity_gal: d.tank_capacity_gal ?? null,
     });
+  }
+
+  /**
+   * Notificación de la RFQ.
+   * La solicitud ya está guardada en `service_requests`; el correo es un aviso
+   * adicional y por eso nunca puede tumbar la respuesta al cliente.
+   */
+  try {
+    const { data: clientProfile } = await db
+      .from('client_profiles')
+      .select('full_name, company_name, email, phone')
+      .eq('id', clientProfileId)
+      .maybeSingle();
+
+    const { data: settings } = await db
+      .from('system_settings')
+      .select('contact_email')
+      .limit(1)
+      .maybeSingle();
+
+    await notifyNewRequest(
+      {
+        id: request.id,
+        request_number: request.request_number,
+        access_token: request.access_token,
+        is_guest: isGuest,
+        created_at: request.created_at ?? new Date().toISOString(),
+
+        service_type: d.service_type,
+        quantity_gal: d.quantity_unknown ? null : d.quantity_gal,
+        quantity_unknown: d.quantity_unknown,
+        quantity_note: d.quantity_note || null,
+
+        facility_name: d.facility_name,
+        facility_type: d.facility_type,
+        province: d.province,
+        district: d.district || null,
+        corregimiento: d.corregimiento || null,
+        address_line: d.address_line,
+        reference_point: d.reference_point || null,
+        access_instructions: d.access_instructions || null,
+        tank_capacity_gal: d.tank_capacity_gal ?? null,
+        current_level_pct: d.current_level_pct ?? null,
+
+        preferred_date: d.preferred_date,
+        preferred_time_slot: d.preferred_time_slot,
+        urgency: d.urgency,
+
+        contact_name: d.contact_name,
+        contact_phone: d.contact_phone,
+        contact_email: d.contact_email || (isGuest ? d.guest_email ?? null : null),
+        customer_comments: d.customer_comments || null,
+
+        client_full_name: clientProfile?.full_name ?? d.guest_full_name ?? null,
+        client_company: clientProfile?.company_name ?? d.guest_company ?? null,
+        client_email: clientProfile?.email ?? d.guest_email ?? null,
+        client_phone: clientProfile?.phone ?? d.guest_phone ?? null,
+
+        attachments_count: d.attachment_paths?.length ?? 0,
+      },
+      { internalTo: settings?.contact_email ?? null },
+    );
+  } catch (notifyError) {
+    console.error('createServiceRequest/notify', notifyError);
   }
 
   revalidatePath('/portal');
