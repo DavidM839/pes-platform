@@ -9,7 +9,8 @@ import type { Config } from 'tailwindcss';
  *   gold 400 = #E0A402   dorado de interfaz
  *
  * Decisiones deliberadas: esquinas practicamente rectas, sin sombras suaves,
- * y una sola familia tipográfica neutra para texto y cifras. La jerarquia la construyen las reglas y el
+ * y dos familias tipograficas: Sora para titulares y rotulos de marca,
+ * Inter para texto y datos. La jerarquia la construyen las reglas y el
  * espaciado, no las tarjetas flotantes.
  */
 const config: Config = {
@@ -61,7 +62,9 @@ const config: Config = {
         panel: '0 16px 48px -12px rgba(0, 23, 60, 0.22)',
       },
       fontFamily: {
-        display: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        // Titulares y rotulos de marca.
+        display: ['var(--font-display)', 'var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        // Texto corrido, formularios y panel.
         sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
       },

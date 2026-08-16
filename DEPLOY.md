@@ -42,10 +42,13 @@ Antes de pulsar **Deploy**, abre **Environment Variables** y agrega:
 | `NEXT_PUBLIC_SUPABASE_URL` | `https://xxxxxxxx.supabase.co` | Production, Preview, Development |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `eyJhbGciOi...` | Production, Preview, Development |
 | `SUPABASE_SERVICE_ROLE_KEY` | `eyJhbGciOi...` | Production, Preview, Development |
-| `NEXT_PUBLIC_SITE_URL` | `https://tu-dominio.com` | Production |
+| `NEXT_PUBLIC_SITE_URL` | `https://www.pes.panamarinesolutions.com` | Production |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `50769954353` | Production, Preview, Development |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | `pes@panamarinesolutions.com` | Production, Preview, Development |
 | `NEXT_PUBLIC_COMPANY_NAME` | `Panama Energy Solutions` | Production, Preview, Development |
+| `RESEND_API_KEY` | `re_xxxxxxxx` | Production, Preview |
+| `EMAIL_FROM` | `Panama Energy Solutions <no-reply@pes.panamarinesolutions.com>` | Production, Preview |
+| `RFQ_NOTIFICATION_EMAIL` | `pes@panamarinesolutions.com` | Production, Preview |
 
 > **`SUPABASE_SERVICE_ROLE_KEY` es sensible.** Vercel la mantiene cifrada y solo disponible en el servidor. Nunca le antepongas el prefijo `NEXT_PUBLIC_`: eso la expondría al navegador.
 
@@ -57,10 +60,10 @@ Pulsa **Deploy**. El primer despliegue toma 2–3 minutos.
 
 Una vez publicado, vuelve a Supabase → **Authentication → URL Configuration**:
 
-- **Site URL:** `https://tu-dominio.com`
+- **Site URL:** `https://www.pes.panamarinesolutions.com`
 - **Redirect URLs:** agrega, uno por línea:
   ```
-  https://tu-dominio.com/auth/callback
+  https://www.pes.panamarinesolutions.com/auth/callback
   https://tu-proyecto.vercel.app/auth/callback
   http://localhost:3000/auth/callback
   ```
@@ -71,13 +74,21 @@ Sin este paso, la confirmación de correo y la recuperación de contraseña fall
 
 ## 5. Dominio propio
 
-1. En Vercel: **Settings → Domains → Add**.
-2. Escribe tu dominio (por ejemplo `panamaenergysolutions.com`).
-3. Vercel te indicará los registros DNS. En tu proveedor de dominio agrega:
-   - Registro `A` de `@` apuntando a `76.76.21.21`
-   - Registro `CNAME` de `www` apuntando a `cname.vercel-dns.com`
+El dominio definitivo del sitio es **`www.pes.panamarinesolutions.com`**
+(subdominio de `panamarinesolutions.com`).
+
+1. En Vercel: **Settings → Domains → Add** → escribe `www.pes.panamarinesolutions.com`.
+2. En el DNS de `panamarinesolutions.com` agrega el registro que indica Vercel:
+   - Registro `CNAME` de `www.pes` apuntando a `cname.vercel-dns.com`
+3. Opcional pero recomendado: agrega también `pes.panamarinesolutions.com`
+   (registro `CNAME` de `pes`) y configúralo en Vercel para que **redirija**
+   a la versión con `www`, de modo que ambas direcciones funcionen.
 4. La propagación puede tardar hasta 48 horas. El certificado SSL se emite solo.
-5. Actualiza `NEXT_PUBLIC_SITE_URL` con el dominio final y vuelve a desplegar.
+5. Confirma que `NEXT_PUBLIC_SITE_URL` sea `https://www.pes.panamarinesolutions.com`
+   y vuelve a desplegar.
+
+> El dominio también debe verificarse en Resend para que los avisos de
+> solicitudes no caigan en spam. Ver `docs/PROCESO-COTIZACIONES.md`.
 
 ---
 
